@@ -27,7 +27,7 @@ public class SelectMode : MonoBehaviour
             panicModeImage.color = new Color(1, 1, 0,0.5f);
             panicModeText.color = new Color(1, 1, 1,0.5f);
 
-            if (Input.GetKeyDown(General.teclas[2]))
+            if (Input.GetKeyDown(General.teclas["derecha"]))
             {
                 tour = false;
             }
@@ -41,7 +41,7 @@ public class SelectMode : MonoBehaviour
             tourModeImage.color = new Color(1, 1, 0, 0.5f);
             tourModeText.color = new Color(1, 1, 1, 0.5f);
 
-            if (Input.GetKeyDown(General.teclas[1]))
+            if (Input.GetKeyDown(General.teclas["izquierda"]))
             {
                 tour = true;
             }
