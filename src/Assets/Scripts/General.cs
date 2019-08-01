@@ -12,8 +12,8 @@ namespace Assets.Scripts
         public static Dictionary<string, KeyCode> teclas = new Dictionary<string, KeyCode>
         {
             ["start"] = KeyCode.Return,
-            ["izquierda"] = KeyCode.RightArrow,
-            ["derecha"] = KeyCode.LeftArrow
+            ["derecha"] = KeyCode.RightArrow,
+            ["izquierda"] = KeyCode.LeftArrow
         };
 
         /// <summary>
@@ -21,11 +21,12 @@ namespace Assets.Scripts
         /// </summary>
         public static Dictionary<string,float> limites = new Dictionary<string, float>
         {
-            ["izquierda"] = -8.1f,
-            ["derecha"] = 8.19f,
-            ["superior"]=4.13f,
-            ["inferior"]=-2.51f
+            ["izquierda"] = -8.24f,
+            ["derecha"] = 8.24f,
+            ["superior"] = 4.13f,
+            ["inferior"] = -2.57f
         };
+
         /// <summary>
         /// Carga una escena al presionar la tecla enter
         /// </summary>
@@ -34,10 +35,10 @@ namespace Assets.Scripts
         {
             if (Input.GetKeyDown(teclas["start"]))
             {
-                //Crear escena para modo Aventura
                 SceneManager.LoadScene(escena);
             }
         }
+
         /// <summary>
         /// Carga una escena al presionar la tecla enter
         /// </summary>
@@ -46,7 +47,6 @@ namespace Assets.Scripts
         {
             if (Input.GetKeyDown(teclas["start"]))
             {
-                //Crear escena para modo Aventura
                 SceneManager.LoadScene(escena);
             }
         }
