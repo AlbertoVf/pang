@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 public class PressStart : MonoBehaviour
 {
     public GameObject pressStart;
@@ -12,7 +11,8 @@ public class PressStart : MonoBehaviour
         ParpadeoTexto(pressStart);
         General.CargarEscena(1);
     }
-    private void ParpadeoTexto(GameObject gm)
+
+    void ParpadeoTexto(GameObject gm)
     {
         time += Time.deltaTime;
         if (Mathf.RoundToInt(time) % 2 == 0)

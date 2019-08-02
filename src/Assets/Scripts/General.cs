@@ -20,7 +20,7 @@ namespace Assets.Scripts
         /// <summary>
         /// Limites de la pantalla para el mvimiento del jugador
         /// </summary>
-        public static Dictionary<string,float> limites = new Dictionary<string, float>
+        public static Dictionary<string, float> limites = new Dictionary<string, float>
         {
             ["izquierda"] = -8.24f,
             ["derecha"] = 8.24f,
@@ -33,6 +33,8 @@ namespace Assets.Scripts
         /// </summary>
         public static Dictionary<string, float> velocidades = new Dictionary<string, float>
         {
+            ["nulo"] = 0f,
+            ["desaparicion"] = 0.4f,
             ["lento"] = 2f,
             ["normal"] = 4f,
             ["rapido"] = 6f

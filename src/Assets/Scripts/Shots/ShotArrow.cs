@@ -6,6 +6,7 @@ public class ShotArrow : MonoBehaviour
     float speed = General.velocidades["normal"];
     public GameObject chainGFX;
     Vector2 startPos;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,7 @@ public class ShotArrow : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(gameObject);
         ShotManager.shm.DestroyShot();
@@ -34,7 +35,7 @@ public class ShotArrow : MonoBehaviour
     /// <summary>
     /// Modifica el grafico de la cadena añadiendo los eslabones superpuestos al blanco
     /// </summary>
-    private void DibujarCadena()
+    void DibujarCadena()
     {
         GameObject chain = Instantiate(chainGFX, transform.position - new Vector3(0, 0.2f, 0), Quaternion.identity);
         chain.transform.parent = transform;

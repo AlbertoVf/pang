@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class SelectMode : MonoBehaviour
 {
@@ -8,8 +7,8 @@ public class SelectMode : MonoBehaviour
     public Text tourModeText;
     public Image panicModeImage;
     public Text panicModeText;
-
     bool tour;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +23,8 @@ public class SelectMode : MonoBehaviour
             tourModeImage.color = new Color(1, 1, 1);
             tourModeText.color = new Color(1, 1, 1);
 
-            panicModeImage.color = new Color(1, 1, 0,0.5f);
-            panicModeText.color = new Color(1, 1, 1,0.5f);
+            panicModeImage.color = new Color(1, 1, 0, 0.5f);
+            panicModeText.color = new Color(1, 1, 1, 0.5f);
 
             if (Input.GetKeyDown(General.teclas["izquierda"]))
             {

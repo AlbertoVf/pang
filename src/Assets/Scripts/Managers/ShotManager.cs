@@ -7,8 +7,9 @@ public class ShotManager : MonoBehaviour
     Transform player;
     private int maxShots;
     private int numberOfShots = 0;
-    private int typeOfShot;//0: arrow, 1: double arrow, 2: ancle, 3: laser
+    public int typeOfShot;//0: arrow,1: ancle, 2: laser
     Animator animator;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class ShotManager : MonoBehaviour
             Shot();
         }
     }
-    private void Awake()
+    void Awake()
     {
         if (shm == null)
         {
@@ -41,7 +42,7 @@ public class ShotManager : MonoBehaviour
     /// Comprueba si el jugador puede disparar
     /// </summary>
     /// <returns>true si puede disparar</returns>
-    private bool CanShot()
+    bool CanShot()
     {
         if (numberOfShots < maxShots)
         {
@@ -53,7 +54,7 @@ public class ShotManager : MonoBehaviour
     /// <summary>
     /// Realiza el disparo
     /// </summary>
-    private void Shot()
+    void Shot()
     {
         Instantiate(Shots[typeOfShot], player.position - new Vector3(0, 0.15f, 0), Quaternion.identity);
         numberOfShots++;

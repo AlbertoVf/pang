@@ -4,15 +4,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     float speed = General.velocidades["normal"];
-    float movement = 0;
-   // float newX;
+    float movement = General.velocidades["nulo"];
     bool rightWall;
     bool leftWall;
     private Rigidbody2D rb;
     private Animator animator;
     SpriteRenderer sr;
 
-    private void Awake()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -21,7 +20,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -29,7 +28,7 @@ public class Player : MonoBehaviour
     {
         movement = Input.GetAxisRaw("Horizontal") * speed;
         animator.SetInteger("velX", Mathf.RoundToInt(movement));
-        if (movement < 0)
+        if (movement < General.velocidades["nulo"])
         {
             sr.flipX = true;
         }
@@ -39,28 +38,28 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (leftWall)
         {
             if (Input.GetKey(General.teclas["izquierda"]))
             {
-                speed = 0;
+                speed = General.velocidades["nulo"];
             }
             else if (Input.GetKey(General.teclas["derecha"]) || Input.GetKeyUp(General.teclas["izquierda"]))
             {
-                speed = 4;
+                speed = General.velocidades["normal"];
             }
         }
         if (rightWall)
         {
             if (Input.GetKey(General.teclas["izquierda"]) || Input.GetKeyUp(General.teclas["derecha"]))
             {
-                speed = 4;
+                speed = General.velocidades["normal"];
             }
             else if (Input.GetKey(General.teclas["derecha"]))
             {
-                speed = 0;
+                speed = General.velocidades["nulo"];
             }
         }
         rb.MovePosition(rb.position + Vector2.right * movement * Time.fixedDeltaTime);
@@ -73,21 +72,23 @@ public class Player : MonoBehaviour
     /// Comprueba si el jugador esta en contacto con una colision
     /// </summary>
     /// <param name="collision">Objeto con el que esta colisionando</param>
-    private void OnCollisionStay2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Left")
         {
             leftWall = true;
-        }else if (collision.gameObject.tag == "Right")
+        }
+        else if (collision.gameObject.tag == "Right")
         {
             rightWall = true;
         }
     }
+
     /// <summary>
     /// Comprueba si el jugador ya ha salido de un objeto con el que colisionaba
     /// </summary>
     /// <param name="collision">Objeto con el que estaba colisionando</param>
-    private void OnCollisionExit2D(Collision2D collision)
+    void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Left")
         {
