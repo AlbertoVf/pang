@@ -6,7 +6,7 @@ public class ShotArrow : MonoBehaviour
     float speed = General.velocidades["normal"];
     public GameObject chainGFX;
     Vector2 startPos;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class ShotArrow : MonoBehaviour
         if ((transform.position.y - startPos.y) >= 0.2f)
         {
             DibujarCadena();
-            startPos = transform.position; 
+            startPos = transform.position;
         }
     }
 

@@ -7,9 +7,9 @@ public class ShotManager : MonoBehaviour
     Transform player;
     private int maxShots;
     private int numberOfShots = 0;
-    public int typeOfShot;//0: arrow,1: ancle, 2: laser
+    public int typeOfShot;//0: arrow, 1: double arrow, 2: ancle, 3: laser
     Animator animator;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +56,16 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     void Shot()
     {
-        Instantiate(Shots[typeOfShot], player.position - new Vector3(0, 0.15f, 0), Quaternion.identity);
+        if (typeOfShot != 3)
+        {
+            Instantiate(Shots[typeOfShot], player.position - new Vector3(0, 0.15f, 0), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(Shots[3], new Vector2(player.position.x + .5f, player.position.y + 1.15f), Quaternion.Euler(new Vector3(0, 0, -5)));
+            Instantiate(Shots[3], new Vector2(player.position.x, player.position.y + 1.15f), Quaternion.identity);
+            Instantiate(Shots[3], new Vector2(player.position.x - .5f, player.position.y + 1.15f), Quaternion.Euler(new Vector3(0, 0, 5)));
+        }
         numberOfShots++;
     }
 

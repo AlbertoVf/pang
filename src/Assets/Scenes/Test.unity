@@ -188,7 +188,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shots:
   - {fileID: 6441807500885820814, guid: 697ffe3f94d85b04fa3ae32b84e71179, type: 3}
+  - {fileID: 6441807500885820814, guid: 697ffe3f94d85b04fa3ae32b84e71179, type: 3}
   - {fileID: 6441807500885820814, guid: 7cd49ea51355dfc44b81bd14bbb9d543, type: 3}
+  - {fileID: 8643486310560728308, guid: faf7150f55914b24bb6d49cedd1d9306, type: 3}
   typeOfShot: 1
 --- !u!1 &1607716447
 GameObject:
