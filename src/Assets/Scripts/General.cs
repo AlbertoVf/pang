@@ -13,7 +13,8 @@ namespace Assets.Scripts
         {
             ["start"] = KeyCode.Return,
             ["derecha"] = KeyCode.RightArrow,
-            ["izquierda"] = KeyCode.LeftArrow
+            ["izquierda"] = KeyCode.LeftArrow,
+            ["disparar"] = KeyCode.Space
         };
 
         /// <summary>
