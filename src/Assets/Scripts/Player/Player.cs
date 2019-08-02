@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
     /// Comprueba si el jugador esta en contacto con una colision
     /// </summary>
     /// <param name="collision">Objeto con el que esta colisionando</param>
-    void OnCollisionStay2D(Collision2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Left")
         {
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
     /// Comprueba si el jugador ya ha salido de un objeto con el que colisionaba
     /// </summary>
     /// <param name="collision">Objeto con el que estaba colisionando</param>
-    void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Left")
         {

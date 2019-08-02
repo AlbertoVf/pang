@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Left
   - Right
+  - Ball
   layers:
   - Default
   - TransparentFX
@@ -19,9 +20,9 @@ TagManager:
   - 
   - Player
   - Shot
-  - 
-  - 
-  - 
+  - 'Ball '
+  - Ground
+  - Wall
   - 
   - 
   - 

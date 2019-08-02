@@ -28,8 +28,16 @@ public class ShotArrow : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
-        ShotManager.shm.DestroyShot();
+        if (collision.gameObject.tag == "Ball")
+        {
+            collision.gameObject.GetComponent<Ball>().Split();
+        }
+        if (collision.gameObject.tag != "Player")
+        {
+            Destroy(gameObject);
+            ShotManager.shm.DestroyShot();
+        }
+
     }
 
     /// <summary>

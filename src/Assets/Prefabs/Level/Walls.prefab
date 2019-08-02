@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1595042384766582329}
   - component: {fileID: 1595042384766582328}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Right
   m_TagString: Right
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1595042385205884500}
   - component: {fileID: 1595042385205884503}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Roof
   m_TagString: Roof
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1595042385390715307}
   - component: {fileID: 1595042385390715306}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Left
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1595042385551653634}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1595042385694709958}
   - component: {fileID: 1595042385694709953}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
