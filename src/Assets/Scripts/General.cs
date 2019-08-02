@@ -29,6 +29,16 @@ namespace Assets.Scripts
         };
 
         /// <summary>
+        /// Velocidades de los proyectiles y el jugador
+        /// </summary>
+        public static Dictionary<string, float> velocidades = new Dictionary<string, float>
+        {
+            ["lento"] = 2f,
+            ["normal"] = 4f,
+            ["rapido"] = 6f
+        };
+
+        /// <summary>
         /// Carga una escena al presionar la tecla enter
         /// </summary>
         /// <param name="escena">Nombre de la escena</param>

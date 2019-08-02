@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float speed = 4f;
+    float speed = General.velocidades["normal"];
     float movement = 0;
    // float newX;
     bool rightWall;

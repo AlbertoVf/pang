@@ -55,7 +55,7 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     private void Shot()
     {
-        Instantiate(Shots[typeOfShot], player.position + new Vector3(0, 0.35f, 0), Quaternion.identity);
+        Instantiate(Shots[typeOfShot], player.position - new Vector3(0, 0.15f, 0), Quaternion.identity);
         numberOfShots++;
     }
 
