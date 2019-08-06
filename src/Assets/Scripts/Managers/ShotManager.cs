@@ -24,6 +24,10 @@ public class ShotManager : MonoBehaviour
         {
             Shot();
         }
+        if(numberOfShots == maxShots && GameObject.FindGameObjectsWithTag("Arrow").Length == 0 && GameObject.FindGameObjectsWithTag("Ancle").Length == 0)
+        {
+            numberOfShots = 0;
+        }
     }
     void Awake()
     {
@@ -74,9 +78,35 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     public void DestroyShot()
     {
-        if (numberOfShots > 0 && numberOfShots <= maxShots)
+        if (numberOfShots > 0 && numberOfShots < maxShots)
         {
             numberOfShots--;
+        }
+    }
+
+    public void ChangeShot(int type)
+    {
+        if (typeOfShot != type)
+        {
+            switch (type)
+            {
+                case 0:
+                    maxShots = 1;
+                    break;
+                case 1:
+                    maxShots = 2;
+
+                    break;
+                case 2:
+                    maxShots = 1;
+
+                    break;
+                case 3:
+                    maxShots = 5;
+                    break;
+            }
+            typeOfShot = type;
+            numberOfShots = 0;
         }
     }
 }

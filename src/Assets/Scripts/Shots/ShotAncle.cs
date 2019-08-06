@@ -35,6 +35,12 @@ public class ShotAncle : MonoBehaviour
         {
             StartCoroutine(IEDestroyAncle());
         }
+        if (collision.gameObject.tag == "Ball")
+        {
+            collision.gameObject.GetComponent<Ball>().Split();
+            Destroy(gameObject);
+            ShotManager.shm.DestroyShot();
+        }
     }
 
     /// <summary>

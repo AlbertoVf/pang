@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 9097818109547011183}
   m_Layer: 9
   m_Name: Ancle
-  m_TagString: Untagged
+  m_TagString: Ancle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

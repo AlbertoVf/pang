@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,7 +11,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     SpriteRenderer sr;
-
+    public GameObject shield;
+    public bool blink;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -84,6 +86,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ball")
+        {
+            if (shield.activeInHierarchy)
+            {
+                shield.SetActive(false);
+                StartCoroutine(IEBlinking());
+            }
+            else
+            {
+                if (!blink)
+                {
+                    //fin de partida
+                }
+            }
+        }
+    }
+
     /// <summary>
     /// Comprueba si el jugador ya ha salido de un objeto con el que colisionaba
     /// </summary>
@@ -98,5 +119,24 @@ public class Player : MonoBehaviour
         {
             rightWall = false;
         }
+    }
+    IEnumerator IEBlinking()
+    {
+        blink = true;
+        for (int i = 0; i < General.tiempo["cuentaAtras"]; i++)
+        {
+            if (blink)
+            {
+                sr.color = new Color(1, 1, 1, 0);
+                yield return new WaitForSeconds(General.tiempo["parpadeo"]);
+                sr.color = new Color(1, 1, 1, 1);
+                yield return new WaitForSeconds(General.tiempo["parpadeo"]);
+            }
+            else
+            {
+                break;
+            }
+        }
+        blink = false;
     }
 }
