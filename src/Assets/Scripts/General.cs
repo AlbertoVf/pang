@@ -36,7 +36,7 @@ namespace Assets.Scripts
         /// </summary>
         public static Dictionary<string, float> tiempo = new Dictionary<string, float>
         {
-            ["items"] = 5f,
+            ["item"] = 5f,
             ["cuentaAtras"] = 5f,
             ["parpadeo"] = 0.2f
         };
