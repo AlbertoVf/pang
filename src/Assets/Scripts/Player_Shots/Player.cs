@@ -123,14 +123,14 @@ public class Player : MonoBehaviour
     IEnumerator IEBlinking()
     {
         blink = true;
-        for (int i = 0; i < General.tiempo["cuentaAtras"]; i++)
+        for (int i = 0; i < General.tiempos["cuentaAtras"]; i++)
         {
             if (blink)
             {
                 sr.color = new Color(1, 1, 1, 0);
-                yield return new WaitForSeconds(General.tiempo["parpadeo"]);
+                yield return new WaitForSeconds(General.tiempos["parpadeo"]);
                 sr.color = new Color(1, 1, 1, 1);
-                yield return new WaitForSeconds(General.tiempo["parpadeo"]);
+                yield return new WaitForSeconds(General.tiempos["parpadeo"]);
             }
             else
             {

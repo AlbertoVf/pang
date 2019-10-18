@@ -108,7 +108,7 @@ public class BallManager : MonoBehaviour
                 item.GetComponent<Ball>().Split();
                 Destroy(item);
             }
-            yield return new WaitForSeconds(General.tiempo["parpadeo"]);
+            yield return new WaitForSeconds(General.tiempos["parpadeo"]);
             ReloadList();
             numberToFind++;
         }

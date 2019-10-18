@@ -18,7 +18,7 @@ public class Shield : MonoBehaviour
         if(collision.gameObject.tag == "Ground")
         {
             inGround = true;
-            Destroy(gameObject, General.tiempo["item"]);
+            Destroy(gameObject, General.tiempos["item"]);
         }
         if (collision.gameObject.tag == "Player")
         {

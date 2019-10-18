@@ -48,9 +48,9 @@ TextureImporter:
     21300086: Fruit_12
     21300088: Fruit_13
     21300090: Fruit_14
-    21300092: PangMobile_46
-    21300094: PangMobile_47
-    21300096: PangMobile_48
+    21300092: fruit_12
+    21300094: fruit_13
+    21300096: fruit_14
     21300098: PangMobile_49
     21300100: PangMobile_50
     21300102: PangMobile_51
@@ -68,14 +68,14 @@ TextureImporter:
     21300126: PangMobile_32
     21300128: PangMobile_33
     21300130: PangMobile_34
-    21300132: PangMobile_35
-    21300134: PangMobile_36
-    21300136: PangMobile_37
-    21300138: PangMobile_38
-    21300140: PangMobile_39
-    21300142: PangMobile_40
-    21300144: PangMobile_41
-    21300146: PangMobile_42
+    21300132: fruit_1
+    21300134: fruit_2
+    21300136: fruit_3
+    21300138: fruit_4
+    21300140: fruit_5
+    21300142: fruit_6
+    21300144: fruit_7
+    21300146: fruit_8
     21300148: PangMobile_43
     21300150: PangMobile_44
     21300152: PangMobile_45
@@ -83,6 +83,10 @@ TextureImporter:
     21300156: DoubleArrow
     21300158: Gun
     21300160: Ancle
+    21300162: fruit_9
+    21300164: fruit_10
+    21300166: fruit_11
+    21300168: PangMobile_20
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -887,15 +891,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_35
+      name: fruit_1
       rect:
         serializedVersion: 2
         x: 9
         y: 60
         width: 20
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -907,15 +911,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_36
+      name: fruit_2
       rect:
         serializedVersion: 2
         x: 34
         y: 60
         width: 20
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -927,15 +931,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_37
+      name: fruit_3
       rect:
         serializedVersion: 2
         x: 59
         y: 60
         width: 20
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -947,15 +951,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_38
+      name: fruit_4
       rect:
         serializedVersion: 2
         x: 84
         y: 60
         width: 20
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -967,15 +971,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_39
+      name: fruit_5
       rect:
         serializedVersion: 2
         x: 109
         y: 60
         width: 20
         height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -987,15 +991,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_40
+      name: fruit_6
       rect:
         serializedVersion: 2
         x: 134
         y: 60
         width: 20
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1007,15 +1011,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_41
+      name: fruit_7
       rect:
         serializedVersion: 2
         x: 159
         y: 60
         width: 20
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1027,15 +1031,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_42
+      name: fruit_8
       rect:
         serializedVersion: 2
         x: 184
         y: 60
         width: 20
         height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1047,15 +1051,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_43
+      name: fruit_9
       rect:
         serializedVersion: 2
         x: 209
         y: 60
         width: 20
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1067,15 +1071,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_44
+      name: fruit_10
       rect:
         serializedVersion: 2
         x: 234
         y: 60
         width: 20
         height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1087,15 +1091,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_45
+      name: fruit_11
       rect:
         serializedVersion: 2
         x: 259
         y: 60
         width: 20
         height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1107,15 +1111,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_46
+      name: fruit_12
       rect:
         serializedVersion: 2
         x: 284
         y: 60
         width: 20
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1127,15 +1131,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_47
+      name: fruit_13
       rect:
         serializedVersion: 2
         x: 309
         y: 60
         width: 20
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1147,15 +1151,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_48
+      name: fruit_14
       rect:
         serializedVersion: 2
         x: 334
         y: 60
         width: 20
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1242,6 +1246,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 8ba5ce703a3116a46971a28cb408b084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PangMobile_20
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 67
+        width: 343
+        height: 11
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073483335a0cb7945977b9e42a1a5cae
       vertices: []
       indices: 
       edges: []

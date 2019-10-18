@@ -36,7 +36,7 @@ public class FreezeManager : MonoBehaviour
     }
     public void StartFreeze()
     {
-        freezeTime = General.tiempo["cuentaAtras"];
+        freezeTime = General.tiempos["cuentaAtras"];
         if (!freeze)
         {
             StartCoroutine(IEFreezeTime());
