@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextBall: {fileID: 5663074908410429105, guid: cd03907ed4e57c24f9615bd906967f97,
     type: 3}
+  right: 0
 --- !u!50 &466808151124900997
 Rigidbody2D:
   serializedVersion: 4
@@ -104,7 +105,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466808151124900993}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

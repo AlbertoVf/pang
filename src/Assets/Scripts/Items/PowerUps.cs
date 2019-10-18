@@ -62,6 +62,10 @@ public class PowerUps : MonoBehaviour
                 //cambio disparo a laser
                 ShotManager.shm.ChangeShot(3);
             }
+            else if (gameObject.name.Equals("TimeStop"))
+            {
+                FreezeManager.fm.StartFreeze();
+            }
             Destroy(gameObject);
         }
 

@@ -30,7 +30,7 @@ TextureImporter:
     21300050: TimeStop
     21300052: TimeSlow
     21300054: Life
-    21300056: PangMobile_28
+    21300056: TimeStop
     21300058: PangMobile_29
     21300060: PangMobile_30
     21300062: PangMobile_31
@@ -747,15 +747,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PangMobile_28
+      name: TimeStop
       rect:
         serializedVersion: 2
         x: 194
         y: 95
         width: 20
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

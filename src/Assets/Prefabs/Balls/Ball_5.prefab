@@ -82,5 +82,10 @@ PrefabInstance:
       propertyPath: nextBall
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 466808151124900997, guid: 12569f1c02a0ce740ad77c17fc90b9b5,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12569f1c02a0ce740ad77c17fc90b9b5, type: 3}

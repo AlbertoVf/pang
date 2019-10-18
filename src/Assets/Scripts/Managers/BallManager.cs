@@ -6,7 +6,7 @@ using UnityEngine;
 public class BallManager : MonoBehaviour
 {
     public static BallManager bm;
-    List<GameObject> balls = new List<GameObject>();
+    public List<GameObject> balls = new List<GameObject>();
     public bool spliting;//comprueba si esta explotando
     private void Awake()
     {

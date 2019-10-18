@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6821155026989488457
 Transform:
@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 21300034, guid: 5175bdb7de8544d4b977573edee47986, type: 3}
   - {fileID: 21300038, guid: 5175bdb7de8544d4b977573edee47986, type: 3}
   - {fileID: 21300036, guid: 5175bdb7de8544d4b977573edee47986, type: 3}
+  - {fileID: 21300050, guid: 5175bdb7de8544d4b977573edee47986, type: 3}
   powerUpsAnimated:
   - {fileID: 899453305660073669, guid: 6b5a6300b535430469799f3456f28a66, type: 3}
   - {fileID: 9138926136637610921, guid: a695d3a4b516c454991e51a678978904, type: 3}

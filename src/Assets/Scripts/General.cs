@@ -30,14 +30,14 @@ namespace Assets.Scripts
 
         /// <summary>
         /// Tiempos de duracion.
-        /// items : Duracion de los items en el suelo.
+        /// item : Duracion de los items en el suelo.
         /// cuentaAtras : temporizador de inicio y duracion de perdida de escudo.
         /// parpadeo : parpadeo de las animaciones.
         /// </summary>
         public static Dictionary<string, float> tiempo = new Dictionary<string, float>
         {
             ["item"] = 5f,
-            ["cuentaAtras"] = 5f,
+            ["cuentaAtras"] = 3f,
             ["parpadeo"] = 0.2f
         };
 
