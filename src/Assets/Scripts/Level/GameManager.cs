@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 
 using UnityEngine;
 
@@ -12,7 +13,14 @@ public class GameManager : MonoBehaviour
     /// Variable para haceder a la clase desde otras
     /// </summary>
     public static GameManager gm;
-
+    /// <summary>
+    /// Comprueba si se ha iniciado el juego
+    /// </summary>
+    public static bool inGame;
+    /// <summary>
+    /// Texto de inicio de nivel
+    /// </summary>
+    public GameObject ready;
     /// <summary>
     /// Awakes this instance.
     /// Establece la variable estatica de clase
@@ -29,6 +37,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        StartCoroutine(IEGameStart());
+    }
+
     /// <summary>
     /// Ies the game start.
     /// Inicia el nivel
@@ -36,17 +49,9 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator IEGameStart()
     {
-        yield return null;
-    }
-
-    /// <summary>
-    /// Ies the ready.
-    /// Inicia la partida
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator IEReady()
-    {
-        StartCoroutine(IEGameStart());
-        yield return null;
+        yield return new WaitForSeconds(General.Tiempos["cuentaAtras"]);
+        ready.SetActive(false);
+        BallManager.bm.StartGame();
+        inGame = true;
     }
 }

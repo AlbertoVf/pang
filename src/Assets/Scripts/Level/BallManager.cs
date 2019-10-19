@@ -21,7 +21,7 @@ public class BallManager : MonoBehaviour
     /// Lista de bolas que estan en juego
     /// </summary>
     public List<GameObject> balls = new List<GameObject>();
-
+    Player player;
     /// <summary>
     /// The spliting
     /// Comprueba si esta explotando
@@ -38,19 +38,20 @@ public class BallManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        player = FindObjectOfType<Player>();
     }
 
     private void Start()
     {
         balls.AddRange(GameObject.FindGameObjectsWithTag("Ball"));
-        StartGame();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (balls.Count == 0)
         {
-            SlowTime();
+            player.Win();
+            GameManager.inGame = false;
         }
     }
 
@@ -117,7 +118,14 @@ public class BallManager : MonoBehaviour
         Destroy(ball);
         balls.Remove(ball);
     }
-
+    public void LoseGame()
+    {
+        foreach (GameObject item in balls)
+        {
+            item.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            item.GetComponent<Rigidbody2D>().isKinematic = true;
+        }
+    }
     /// <summary>
     /// Reloads the list. Recarga la lista de bolas en juego
     /// </summary>

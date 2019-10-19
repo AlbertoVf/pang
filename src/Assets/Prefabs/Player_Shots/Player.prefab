@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1369968779
 Transform:
   m_ObjectHideFlags: 0
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ab86ce716377d40a85824c53b76a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shield: {fileID: 1369968778}
   blink: 0
+  shield: {fileID: 1369968778}
 --- !u!58 &4479770472393738511
 CircleCollider2D:
   m_ObjectHideFlags: 0

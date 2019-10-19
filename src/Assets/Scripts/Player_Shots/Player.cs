@@ -75,34 +75,38 @@ public class Player : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        if (leftWall)
+        if (GameManager.inGame)
         {
-            if (Input.GetKey(General.Teclas["izquierda"]))
+            if (leftWall)
             {
-                speed = General.Velocidades["nulo"];
+                if (Input.GetKey(General.Teclas["izquierda"]))
+                {
+                    speed = General.Velocidades["nulo"];
+                }
+                else if (Input.GetKey(General.Teclas["derecha"]) || Input.GetKeyUp(General.Teclas["izquierda"]))
+                {
+                    speed = General.Velocidades["normal"];
+                }
             }
-            else if (Input.GetKey(General.Teclas["derecha"]) || Input.GetKeyUp(General.Teclas["izquierda"]))
+            if (rightWall)
             {
-                speed = General.Velocidades["normal"];
+                if (Input.GetKey(General.Teclas["izquierda"]) || Input.GetKeyUp(General.Teclas["derecha"]))
+                {
+                    speed = General.Velocidades["normal"];
+                }
+                else if (Input.GetKey(General.Teclas["derecha"]))
+                {
+                    speed = General.Velocidades["nulo"];
+                }
             }
+            rb.MovePosition(rb.position + Vector2.right * movement * Time.fixedDeltaTime);
         }
-        if (rightWall)
-        {
-            if (Input.GetKey(General.Teclas["izquierda"]) || Input.GetKeyUp(General.Teclas["derecha"]))
-            {
-                speed = General.Velocidades["normal"];
-            }
-            else if (Input.GetKey(General.Teclas["derecha"]))
-            {
-                speed = General.Velocidades["nulo"];
-            }
-        }
-        rb.MovePosition(rb.position + Vector2.right * movement * Time.fixedDeltaTime);
+
     }
 
     /// <summary>
     /// Called when [trigger enter2 d].
-    /// Gestiona la perdida de escudo al chocar con una bola
+    /// Gestiona la perdida de escudo al chocar con una bola y al perder la partida
     /// </summary>
     /// <param name="collision">The collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
@@ -118,9 +122,16 @@ public class Player : MonoBehaviour
             {
                 if (!blink)
                 {
-                    //fin de partida
+                    StartCoroutine(IELose());
                 }
             }
+        }
+        if (!GameManager.inGame && (collision.gameObject.tag == "Right" || collision.gameObject.tag == "Left"))
+        {
+            sr.flipX = !sr.flipX;
+            rb.velocity /= 3;
+            rb.velocity *= -1;
+            rb.AddForce(Vector3.up * 5, ForceMode2D.Impulse);
         }
     }
 
@@ -162,18 +173,31 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        movement = Input.GetAxisRaw("Horizontal") * speed;
-        animator.SetInteger("velX", Mathf.RoundToInt(movement));
-        if (movement < General.Velocidades["nulo"])
+        if (GameManager.inGame)
         {
-            sr.flipX = true;
+            movement = Input.GetAxisRaw("Horizontal") * speed;
+            animator.SetInteger("velX", Mathf.RoundToInt(movement));
+            if (movement < General.Velocidades["nulo"])
+            {
+                sr.flipX = true;
+            }
+            else
+            {
+                sr.flipX = false;
+            }
         }
-        else
-        {
-            sr.flipX = false;
-        }
+
     }
 
+    /// <summary>
+    /// Wins this instance.
+    /// Cambia a animacion de ganar y desactiva el escudo
+    /// </summary>
+    public void Win()
+    {
+        shield.SetActive(false);
+        animator.SetBool("win", true);
+    }
     /// <summary>
     /// Ies the blinking.
     /// Corrutina de parpadeo
@@ -184,7 +208,7 @@ public class Player : MonoBehaviour
         blink = true;
         for (int i = 0; i < General.Tiempos["cuentaAtras"]; i++)
         {
-            if (blink)
+            if (blink && GameManager.inGame)
             {
                 sr.color = new Color(1, 1, 1, 0);
                 yield return new WaitForSeconds(General.Tiempos["parpadeo"]);
@@ -197,5 +221,29 @@ public class Player : MonoBehaviour
             }
         }
         blink = false;
+    }
+
+    /// <summary>
+    /// Ies the lose.
+    /// Corrutina la perdida de partida. Cambio de animacion y fuerza para sacar al personaje de la pantalla
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator IELose()
+    {
+        GameManager.inGame = false;
+
+        animator.SetBool("lose", true);
+        BallManager.bm.LoseGame();
+        yield return new WaitForSeconds(General.Tiempos["texto"]);
+        rb.isKinematic = false;
+        if (transform.position.x < 0)
+        {
+            rb.AddForce(new Vector2(-10, 10), ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(new Vector2(10, 10), ForceMode2D.Impulse);
+
+        }
     }
 }
