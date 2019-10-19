@@ -1,32 +1,44 @@
 ﻿using Assets.Scripts;
+
 using UnityEngine;
 
+/// <summary>
+/// Gestiona la flecha
+/// </summary>
 public class ShotArrow : MonoBehaviour
 {
-    float speed = General.velocidades["normal"];
+    /// <summary>
+    /// The chain GFX
+    /// Grafico de la cadena
+    /// </summary>
     public GameObject chainGFX;
-    Vector2 startPos;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// The speed
+    /// Velocidad del disparo
+    /// </summary>
+    private float speed = General.Velocidades["normal"];
+
+    /// <summary>
+    /// The start position
+    /// </summary>
+    private Vector2 startPos;
+
+    /// <summary>
+    /// Modifica el grafico de la cadena añadiendo los eslabones superpuestos al blanco
+    /// </summary>
+    private void DibujarCadena()
     {
-        startPos = transform.position;
-        DibujarCadena();
-        //startPos = transform.position;
+        GameObject chain = Instantiate(chainGFX, transform.position - new Vector3(0, 0.2f, 0), Quaternion.identity);
+        chain.transform.parent = transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position += Vector3.up * speed * Time.deltaTime;
-        if ((transform.position.y - startPos.y) >= 0.2f)
-        {
-            DibujarCadena();
-            startPos = transform.position;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// Called when [trigger enter2 d].
+    /// Destruye una bola al colisionar con ella
+    /// </summary>
+    /// <param name="collision">The collision.</param>
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ball")
         {
@@ -37,15 +49,28 @@ public class ShotArrow : MonoBehaviour
             Destroy(gameObject);
             ShotManager.shm.DestroyShot();
         }
-
     }
 
     /// <summary>
-    /// Modifica el grafico de la cadena añadiendo los eslabones superpuestos al blanco
+    /// Starts this instance.
     /// </summary>
-    void DibujarCadena()
+    private void Start()
     {
-        GameObject chain = Instantiate(chainGFX, transform.position - new Vector3(0, 0.2f, 0), Quaternion.identity);
-        chain.transform.parent = transform;
+        startPos = transform.position;
+        DibujarCadena();
+    }
+
+    /// <summary>
+    /// Updates this instance.
+    /// Actualiza la flecha
+    /// </summary>
+    private void Update()
+    {
+        transform.position += Vector3.up * speed * Time.deltaTime;
+        if ((transform.position.y - startPos.y) >= 0.2f)
+        {
+            DibujarCadena();
+            startPos = transform.position;
+        }
     }
 }

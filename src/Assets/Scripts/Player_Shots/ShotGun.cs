@@ -1,12 +1,23 @@
 ﻿using Assets.Scripts;
+
 using UnityEngine;
 
+/// <summary>
+/// Gestiona los disparos de la escopeta
+/// </summary>
 public class ShotGun : MonoBehaviour
 {
-    float speed = General.velocidades["rapido"];
+    /// <summary>
+    /// The speed.
+    /// Velocidad de los disparos
+    /// </summary>
+    private readonly float speed = General.Velocidades["rapido"];
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Updates this instance.
+    /// Dispara las 3 balas en diferentes direcciones
+    /// </summary>
+    private void Update()
     {
         if (transform.rotation.z == 0)
         {
@@ -22,7 +33,12 @@ public class ShotGun : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// Called when [trigger enter2 d].
+    /// Comprueba si colisiono con la bola o con un objeto distinto de jugador
+    /// </summary>
+    /// <param name="collision">The collision.</param>
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ball")
         {

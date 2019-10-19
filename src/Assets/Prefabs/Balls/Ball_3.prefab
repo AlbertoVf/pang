@@ -97,6 +97,7 @@ MonoBehaviour:
   nextBall: {fileID: 5663074908410429105, guid: cd03907ed4e57c24f9615bd906967f97,
     type: 3}
   right: 0
+  powerUp: {fileID: 6821155026989488458, guid: 936de18e228d03642a576dfbbaf47ae0, type: 3}
 --- !u!50 &466808151124900997
 Rigidbody2D:
   serializedVersion: 4

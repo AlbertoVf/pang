@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextBall: {fileID: 466808151124900993, guid: 12569f1c02a0ce740ad77c17fc90b9b5, type: 3}
   right: 0
+  powerUp: {fileID: 6821155026989488458, guid: 936de18e228d03642a576dfbbaf47ae0, type: 3}
 --- !u!50 &466808151124900997
 Rigidbody2D:
   serializedVersion: 4

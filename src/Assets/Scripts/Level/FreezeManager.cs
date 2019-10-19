@@ -1,16 +1,49 @@
 ﻿using Assets.Scripts;
+
 using System.Collections;
+
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manager para gestionar el congelamiento de las bolas
+/// </summary>
 public class FreezeManager : MonoBehaviour
 {
-
+    /// <summary>
+    /// The fm
+    /// Variable estatica de clase
+    /// </summary>
     public static FreezeManager fm;
+
+    /// <summary>
+    /// The freeze time text
+    /// Texto con el tiempo de congelacion
+    /// </summary>
     public Text freezeTimeText;
+
+    /// <summary>
+    /// The freeze time count
+    /// Cuenta atras para descongelar las bolas
+    /// </summary>
     public GameObject freezeTimeCount;
-    float freezeTime;
+
+    /// <summary>
+    /// The freeze time
+    /// Tiempo de congelacion de las bolas
+    /// </summary>
+    private float freezeTime;
+
+    /// <summary>
+    /// The freeze
+    /// Comprueba si las bolas estan congeladas
+    /// </summary>
     public bool freeze;
+
+    /// <summary>
+    /// Awakes this instance.
+    /// Asigna la variable estatica de la clase
+    /// </summary>
     private void Awake()
     {
         if (fm == null)
@@ -23,25 +56,33 @@ public class FreezeManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Starts this instance.
+    /// Desactiva el tiempo de congelacion
+    /// </summary>
+    private void Start()
     {
         freezeTimeCount.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    /// <summary>
+    /// Starts the freeze.
+    /// Inicia la corrutina que congela las bolas durante un tiempo determinado
+    /// </summary>
     public void StartFreeze()
     {
-        freezeTime = General.tiempos["cuentaAtras"];
+        freezeTime = General.Tiempos["cuentaAtras"];
         if (!freeze)
         {
             StartCoroutine(IEFreezeTime());
         }
     }
+
+    /// <summary>
+    /// Ies the freeze time.
+    /// Corrutina para congelar la posicion de las bolas
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator IEFreezeTime()
     {
         freeze = true;
@@ -58,7 +99,6 @@ public class FreezeManager : MonoBehaviour
             freezeTime -= Time.deltaTime;
             freezeTimeText.text = freezeTime.ToString("f2");
             yield return null;//espera a cada fotograma
-
         }
         freezeTimeCount.SetActive(false);
         freezeTime = 0;

@@ -1,18 +1,35 @@
 ﻿using Assets.Scripts;
+
 using UnityEngine;
+
+/// <summary>
+/// Gestiona la escena principal del juego
+/// </summary>
 public class PressStart : MonoBehaviour
 {
     public GameObject pressStart;
-    float time;
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// The time
+    /// </summary>
+    private float time;
+
+    /// <summary>
+    /// Updates this instance.
+    /// Carga la escena de modo de juego.
+    /// </summary>
+    private void Update()
     {
         ParpadeoTexto(pressStart);
         General.CargarEscena(1);
     }
 
-    void ParpadeoTexto(GameObject gm)
+    /// <summary>
+    /// Parpadeo the texto.
+    /// Hace parpadear al texto
+    /// </summary>
+    /// <param name="gm">The gm.</param>
+    private void ParpadeoTexto(GameObject gm)
     {
         time += Time.deltaTime;
         if (Mathf.RoundToInt(time) % 2 == 0)

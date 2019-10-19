@@ -1,22 +1,49 @@
 ﻿using Assets.Scripts;
+
 using UnityEngine;
 using UnityEngine.UI;
+
+/// <summary>
+/// Gestiona la escena de seleccion de modo de juego
+/// </summary>
 public class SelectMode : MonoBehaviour
 {
+    /// <summary>
+    /// The tour mode image
+    /// </summary>
     public Image tourModeImage;
-    public Text tourModeText;
-    public Image panicModeImage;
-    public Text panicModeText;
-    bool tour;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// The tour mode text
+    /// </summary>
+    public Text tourModeText;
+
+    /// <summary>
+    /// The panic mode image.
+    /// </summary>
+    public Image panicModeImage;
+
+    /// <summary>
+    /// The panic mode text
+    /// </summary>
+    public Text panicModeText;
+
+    /// <summary>
+    /// The tour.
+    /// Indica si esta seleccionado el modo Tour
+    /// </summary>
+    private bool tour;
+
+    private void Start()
     {
         tour = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Updates this instance.
+    /// Cambia el color del modo de juego seleccionado
+    /// </summary>
+    private void Update()
     {
         if (tour)
         {
@@ -26,7 +53,7 @@ public class SelectMode : MonoBehaviour
             panicModeImage.color = new Color(1, 1, 0, 0.5f);
             panicModeText.color = new Color(1, 1, 1, 0.5f);
 
-            if (Input.GetKeyDown(General.teclas["izquierda"]))
+            if (Input.GetKeyDown(General.Teclas["izquierda"]))
             {
                 tour = false;
             }
@@ -40,7 +67,7 @@ public class SelectMode : MonoBehaviour
             tourModeImage.color = new Color(1, 1, 0, 0.5f);
             tourModeText.color = new Color(1, 1, 1, 0.5f);
 
-            if (Input.GetKeyDown(General.teclas["derecha"]))
+            if (Input.GetKeyDown(General.Teclas["derecha"]))
             {
                 tour = true;
             }

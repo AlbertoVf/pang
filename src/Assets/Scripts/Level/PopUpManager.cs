@@ -1,12 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Manager para gestionar los items que generan puntuacion
+/// </summary>
 public class PopUpManager : MonoBehaviour
 {
+    /// <summary>
+    /// The pm
+    /// Variable estatica para haceder a la clase desde otras
+    /// </summary>
+    public static PopUpManager pm;
+
+    /// <summary>
+    /// The pop up text
+    /// Texto con la puntuacion del item
+    /// </summary>
     public GameObject popUpText;
 
-    public static PopUpManager pm;
+    /// <summary>
+    /// Awakes this instance.
+    /// Asigna la variable estatica
+    /// </summary>
     private void Awake()
     {
         if (pm == null)
@@ -18,7 +32,14 @@ public class PopUpManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void InstanciatePopUpText(Vector2 starPos,int textScore)
+
+    /// <summary>
+    /// Instanciates the pop up text.
+    /// Crea el texto con la puntuacion al explotar o coger un item
+    /// </summary>
+    /// <param name="starPos">The star position.</param>
+    /// <param name="textScore">The text score.</param>
+    public void InstanciatePopUpText(Vector2 starPos, int textScore)
     {
         GameObject pop = Instantiate(popUpText);
         pop.transform.position = starPos;

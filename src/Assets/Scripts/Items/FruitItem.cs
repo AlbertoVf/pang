@@ -1,43 +1,70 @@
 ﻿using Assets.Scripts;
+
 using UnityEngine;
 
+/// <summary>
+/// Gestiona las listas de items de premios
+/// </summary>
 public class FruitItem : MonoBehaviour
 {
-    bool inGround;
+    /// <summary>
+    /// The fruit sprites.
+    /// Array con todas las frutas
+    /// </summary>
     public Sprite[] fruitSprites;
-    SpriteRenderer sr;
+
+    /// <summary>
+    /// The in ground.
+    /// Variable que indica si esta en el suelo
+    /// </summary>
+    private bool inGround;
+
+    /// <summary>
+    /// The sr.
+    /// Sprite renderer para dibujar la fruta
+    /// </summary>
+    private SpriteRenderer sr;
 
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        sr.sprite = fruitSprites[Random.Range(0, fruitSprites.Length)];
-        gameObject.name = sr.sprite.name;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!inGround)
-        {
-            transform.position += Vector3.down * Time.deltaTime * General.velocidades["normal"];
-        }
-    }
+    /// <summary>
+    /// Called when [trigger enter2 d].
+    /// Comprueba si el item colisiona con el suelo o con un elemento que lo destruya y consiga puntos.
+    /// </summary>
+    /// <param name="collision">The collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             inGround = true;
-            Destroy(gameObject, General.tiempos["item"]);
+            Destroy(gameObject, General.Tiempos["item"]);
         }
         else if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Arrow" || collision.gameObject.tag == "Ancle")
         {
-            int score = Random.Range(100, 1000);// metodo de puntuacion temporal
+            int score = Random.Range(100, 1000);
             PopUpManager.pm.InstanciatePopUpText(transform.position, score);
             Destroy(gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Starts this instance.
+    /// Genera un item aleatorio
+    /// </summary>
+    private void Start()
+    {
+        sr.sprite = fruitSprites[Random.Range(0, fruitSprites.Length)];
+        gameObject.name = sr.sprite.name;
+    }
+
+    private void Update()
+    {
+        if (!inGround)
+        {
+            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["normal"];
         }
     }
 }

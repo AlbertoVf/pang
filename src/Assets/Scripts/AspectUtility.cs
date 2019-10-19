@@ -2,13 +2,12 @@
 
 public class AspectUtility : MonoBehaviour
 {
-
     public float _wantedAspectRatio = 1.77778f;
-    static float wantedAspectRatio;
-    static Camera cam;
-    static Camera backgroundCam;
+    private static float wantedAspectRatio;
+    private static Camera cam;
+    private static Camera backgroundCam;
 
-    void Awake()
+    private void Awake()
     {
         cam = GetComponent<Camera>();
         if (!cam)

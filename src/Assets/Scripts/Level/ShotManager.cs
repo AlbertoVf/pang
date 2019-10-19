@@ -1,35 +1,54 @@
-﻿using UnityEngine;
-using Assets.Scripts;
+﻿using Assets.Scripts;
+
+using UnityEngine;
+
+/// <summary>
+/// Manager para gestionar los disparos.
+/// </summary>
 public class ShotManager : MonoBehaviour
 {
+    /// <summary>
+    /// The SHM.
+    /// Variable estatica para acceder a la clase desde otras
+    /// </summary>
     public static ShotManager shm;
+
+    /// <summary>
+    /// The shots
+    /// Array con los tipos de disparos
+    /// </summary>
     public GameObject[] Shots;
-    Transform player;
+
+    /// <summary>
+    /// The player
+    /// </summary>
+    private Transform player;
+
+    /// <summary>
+    /// The maximum shots
+    /// </summary>
     private int maxShots;
+
+    /// <summary>
+    /// The number of shots
+    /// </summary>
     private int numberOfShots = 0;
-    public int typeOfShot;//0: arrow, 1: double arrow, 2: ancle, 3: laser
-    Animator animator;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        typeOfShot = 0;
-        maxShots = 1;
-    }
+    /// <summary>
+    /// The type of shot.
+    /// </summary>
+    public int typeOfShot;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (CanShot() && Input.GetKeyDown(General.teclas["disparar"]))
-        {
-            Shot();
-        }
-        if(numberOfShots == maxShots && GameObject.FindGameObjectsWithTag("Arrow").Length == 0 && GameObject.FindGameObjectsWithTag("Ancle").Length == 0)
-        {
-            numberOfShots = 0;
-        }
-    }
-    void Awake()
+    /// <summary>
+    /// The animator
+    /// </summary>
+    private Animator animator;
+
+    /// <summary>
+    /// Awakes this instance.
+    /// Asigna la variable estatica y el jugador
+    /// </summary>
+    private void Awake()
     {
         if (shm == null)
         {
@@ -46,7 +65,7 @@ public class ShotManager : MonoBehaviour
     /// Comprueba si el jugador puede disparar
     /// </summary>
     /// <returns>true si puede disparar</returns>
-    bool CanShot()
+    private bool CanShot()
     {
         if (numberOfShots < maxShots)
         {
@@ -56,9 +75,54 @@ public class ShotManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Realiza el disparo
+    /// Changes the shot. Intercambia el tipo de desparo
     /// </summary>
-    void Shot()
+    /// <param name="type">The type. 0: arrow, 1: double arrow, 2: ancle, 3: laser</param>
+    public void ChangeShot(int type)
+    {
+        if (typeOfShot != type)
+        {
+            switch (type)
+            {
+                case 0:
+                    maxShots = 1;
+                    break;
+
+                case 1:
+                    maxShots = 2;
+
+                    break;
+
+                case 2:
+                    maxShots = 1;
+
+                    break;
+
+                case 3:
+                    maxShots = 5;
+                    break;
+            }
+            typeOfShot = type;
+            numberOfShots = 0;
+        }
+    }
+
+    /// <summary>
+    /// Destruye el proyectil
+    /// </summary>
+    public void DestroyShot()
+    {
+        if (numberOfShots > 0 && numberOfShots < maxShots)
+        {
+            numberOfShots--;
+        }
+    }
+
+    /// <summary>
+    /// Shots this instance.
+    /// Instancia un nuevo disparo
+    /// </summary>
+    private void Shot()
     {
         if (typeOfShot != 3)
         {
@@ -74,38 +138,27 @@ public class ShotManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Destruye el proyectil
+    /// Starts this instance.
+    /// Establece el tipo de disparo y el numero de disparos disponibles
     /// </summary>
-    public void DestroyShot()
+    private void Start()
     {
-        if (numberOfShots > 0 && numberOfShots < maxShots)
-        {
-            numberOfShots--;
-        }
+        typeOfShot = 0;
+        maxShots = 1;
     }
 
-    public void ChangeShot(int type)
+    /// <summary>
+    /// Updates this instance.
+    /// Realiza un disparo y reestablece el numero de disparos
+    /// </summary>
+    private void Update()
     {
-        if (typeOfShot != type)
+        if (CanShot() && Input.GetKeyDown(General.Teclas["disparar"]))
         {
-            switch (type)
-            {
-                case 0:
-                    maxShots = 1;
-                    break;
-                case 1:
-                    maxShots = 2;
-
-                    break;
-                case 2:
-                    maxShots = 1;
-
-                    break;
-                case 3:
-                    maxShots = 5;
-                    break;
-            }
-            typeOfShot = type;
+            Shot();
+        }
+        if (numberOfShots == maxShots && GameObject.FindGameObjectsWithTag("Arrow").Length == 0 && GameObject.FindGameObjectsWithTag("Ancle").Length == 0)
+        {
             numberOfShots = 0;
         }
     }

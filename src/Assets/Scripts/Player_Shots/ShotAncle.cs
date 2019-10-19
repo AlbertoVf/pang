@@ -1,36 +1,55 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+
+using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts;
+
 using UnityEngine;
 
+/// <summary>
+/// Gestiona el ancla
+/// </summary>
 public class ShotAncle : MonoBehaviour
 {
-    float speed = General.velocidades["normal"];
+    /// <summary>
+    /// The chain GFX
+    /// Diseño de la cadena
+    /// </summary>
     public GameObject chainGFX;
-    Vector2 startPos;
-    List<GameObject> chains = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// The chains
+    /// Eslavones de la cadena
+    /// </summary>
+    private List<GameObject> chains = new List<GameObject>();
+
+    /// <summary>
+    /// The speed
+    /// Velocidad del ancla
+    /// </summary>
+    private float speed = General.Velocidades["normal"];
+
+    /// <summary>
+    /// The start position
+    /// </summary>
+    private Vector2 startPos;
+
+    /// <summary>
+    /// Modifica el grafico de la cadena añadiendo los eslabones superpuestos al blanco
+    /// </summary>
+    private void DibujarCadena()
     {
-        startPos = transform.position;
-        DibujarCadena();
+        GameObject chain = Instantiate(chainGFX, transform.position - new Vector3(0, 0.2f, 0), Quaternion.identity);
+        chain.transform.parent = transform;
+        chains.Add(chain);
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Called when [trigger enter2 d].
+    /// Al colisionar con el techo cambia de color y al colisionar con la bola la destruye
+    /// </summary>
+    /// <param name="collision">The collision.</param>
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        transform.position += Vector3.up * speed * Time.deltaTime;
-        if ((transform.position.y - startPos.y) >= 0.2f)
-        {
-            DibujarCadena();
-            startPos = transform.position;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-
         if (collision.gameObject.tag == "Roof")
         {
             StartCoroutine(IEDestroyAncle());
@@ -44,30 +63,40 @@ public class ShotAncle : MonoBehaviour
     }
 
     /// <summary>
-    /// Modifica el grafico de la cadena añadiendo los eslabones superpuestos al blanco
+    /// Starts this instance.
+    /// Realiza el disparo
     /// </summary>
-    void DibujarCadena()
+    private void Start()
     {
-        GameObject chain = Instantiate(chainGFX, transform.position - new Vector3(0, 0.2f, 0), Quaternion.identity);
-        chain.transform.parent = transform;
-        chains.Add(chain);
+        startPos = transform.position;
+        DibujarCadena();
+    }
+
+    private void Update()
+    {
+        transform.position += Vector3.up * speed * Time.deltaTime;
+        if ((transform.position.y - startPos.y) >= 0.2f)
+        {
+            DibujarCadena();
+            startPos = transform.position;
+        }
     }
 
     /// <summary>
     /// Corrutina que dispara el ancla y al colisionar con el techo cambia de color y desaparece en un tiempo determinado
     /// </summary>
     /// <returns>Desaparicion de ancla tras un tiempo determinado</returns>
-    IEnumerator IEDestroyAncle()
+    private IEnumerator IEDestroyAncle()
     {
         Color color = Color.red;
-        speed = General.velocidades["nulo"];
-        yield return new WaitForSeconds(General.velocidades["desaparicion"]);
+        speed = General.Velocidades["nulo"];
+        yield return new WaitForSeconds(General.Velocidades["desaparicion"]);
         GetComponentInParent<SpriteRenderer>().color = color;
         foreach (GameObject item in chains)
         {
             item.GetComponent<SpriteRenderer>().color = color;
         }
-        yield return new WaitForSeconds(General.velocidades["desaparicion"]);
+        yield return new WaitForSeconds(General.Velocidades["desaparicion"]);
         Destroy(gameObject);
         ShotManager.shm.DestroyShot();
     }
