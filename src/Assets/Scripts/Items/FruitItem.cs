@@ -31,6 +31,24 @@ public class FruitItem : MonoBehaviour
     }
 
     /// <summary>
+    /// Starts this instance.
+    /// Genera un item aleatorio
+    /// </summary>
+    private void Start()
+    {
+        sr.sprite = fruitSprites[Random.Range(0, fruitSprites.Length)];
+        gameObject.name = sr.sprite.name;
+    }
+
+    private void Update()
+    {
+        if (!inGround)
+        {
+            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["normal"];
+        }
+    }
+
+    /// <summary>
     /// Called when [trigger enter2 d].
     /// Comprueba si el item colisiona con el suelo o con un elemento que lo destruya y consiga puntos.
     /// </summary>
@@ -47,24 +65,6 @@ public class FruitItem : MonoBehaviour
             int score = Random.Range(100, 1000);
             PopUpManager.pm.InstanciatePopUpText(transform.position, score);
             Destroy(gameObject);
-        }
-    }
-
-    /// <summary>
-    /// Starts this instance.
-    /// Genera un item aleatorio
-    /// </summary>
-    private void Start()
-    {
-        sr.sprite = fruitSprites[Random.Range(0, fruitSprites.Length)];
-        gameObject.name = sr.sprite.name;
-    }
-
-    private void Update()
-    {
-        if (!inGround)
-        {
-            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["normal"];
         }
     }
 }

@@ -37,6 +37,33 @@ public class PowerUps : MonoBehaviour
     }
 
     /// <summary>
+    /// Starts this instance.
+    /// Establece si se genera un powerUp de la lista de estaticos o de la lista de animados
+    /// </summary>
+    private void Start()
+    {
+        int r = Random.Range(0, 2);
+        if (r == 0)
+        {
+            sr.sprite = powerUpsStatic[Random.Range(0, powerUpsStatic.Length)];
+            gameObject.name = sr.sprite.name;
+        }
+        else
+        {
+            Instantiate(powerUpsAnimated[Random.Range(0, powerUpsAnimated.Length)], transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (!inGround)
+        {
+            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
+        }
+    }
+
+    /// <summary>
     /// Called when [trigger enter2 d].
     /// Establece el comportamiento del item. Si esta en el suelo se destruye en X segundos. Si lo coge el jugador realiza las acciones pertinentes.
     /// </summary>
@@ -72,33 +99,6 @@ public class PowerUps : MonoBehaviour
                 BallManager.bm.SlowTime();
             }
             Destroy(gameObject);
-        }
-    }
-
-    /// <summary>
-    /// Starts this instance.
-    /// Establece si se genera un powerUp de la lista de estaticos o de la lista de animados
-    /// </summary>
-    private void Start()
-    {
-        int r = Random.Range(0, 2);
-        if (r == 0)
-        {
-            sr.sprite = powerUpsStatic[Random.Range(0, powerUpsStatic.Length)];
-            gameObject.name = sr.sprite.name;
-        }
-        else
-        {
-            Instantiate(powerUpsAnimated[Random.Range(0, powerUpsAnimated.Length)], transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
-    }
-
-    private void Update()
-    {
-        if (!inGround)
-        {
-            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
         }
     }
 }

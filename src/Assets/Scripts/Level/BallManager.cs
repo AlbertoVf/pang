@@ -21,7 +21,9 @@ public class BallManager : MonoBehaviour
     /// Lista de bolas que estan en juego
     /// </summary>
     public List<GameObject> balls = new List<GameObject>();
-    Player player;
+
+    private Player player;
+
     /// <summary>
     /// The spliting
     /// Comprueba si esta explotando
@@ -118,6 +120,7 @@ public class BallManager : MonoBehaviour
         Destroy(ball);
         balls.Remove(ball);
     }
+
     public void LoseGame()
     {
         foreach (GameObject item in balls)
@@ -126,6 +129,7 @@ public class BallManager : MonoBehaviour
             item.GetComponent<Rigidbody2D>().isKinematic = true;
         }
     }
+
     /// <summary>
     /// Reloads the list. Recarga la lista de bolas en juego
     /// </summary>

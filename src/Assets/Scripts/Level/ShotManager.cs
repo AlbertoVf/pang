@@ -62,6 +62,32 @@ public class ShotManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Starts this instance.
+    /// Establece el tipo de disparo y el numero de disparos disponibles
+    /// </summary>
+    private void Start()
+    {
+        typeOfShot = 0;
+        maxShots = 1;
+    }
+
+    /// <summary>
+    /// Updates this instance.
+    /// Realiza un disparo y reestablece el numero de disparos
+    /// </summary>
+    private void Update()
+    {
+        if (CanShot() && Input.GetKeyDown(General.Teclas["disparar"]))
+        {
+            Shot();
+        }
+        if (numberOfShots == maxShots && GameObject.FindGameObjectsWithTag("Arrow").Length == 0 && GameObject.FindGameObjectsWithTag("Ancle").Length == 0)
+        {
+            numberOfShots = 0;
+        }
+    }
+
+    /// <summary>
     /// Comprueba si el jugador puede disparar
     /// </summary>
     /// <returns>true si puede disparar</returns>
@@ -135,31 +161,5 @@ public class ShotManager : MonoBehaviour
             Instantiate(Shots[3], new Vector2(player.position.x - .5f, player.position.y + 1.15f), Quaternion.Euler(new Vector3(0, 0, 5)));
         }
         numberOfShots++;
-    }
-
-    /// <summary>
-    /// Starts this instance.
-    /// Establece el tipo de disparo y el numero de disparos disponibles
-    /// </summary>
-    private void Start()
-    {
-        typeOfShot = 0;
-        maxShots = 1;
-    }
-
-    /// <summary>
-    /// Updates this instance.
-    /// Realiza un disparo y reestablece el numero de disparos
-    /// </summary>
-    private void Update()
-    {
-        if (CanShot() && Input.GetKeyDown(General.Teclas["disparar"]))
-        {
-            Shot();
-        }
-        if (numberOfShots == maxShots && GameObject.FindGameObjectsWithTag("Arrow").Length == 0 && GameObject.FindGameObjectsWithTag("Ancle").Length == 0)
-        {
-            numberOfShots = 0;
-        }
     }
 }

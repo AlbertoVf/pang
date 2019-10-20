@@ -101,7 +101,27 @@ public class Player : MonoBehaviour
             }
             rb.MovePosition(rb.position + Vector2.right * movement * Time.fixedDeltaTime);
         }
+    }
 
+    /// <summary>
+    /// Updates this instance.
+    /// Cambia la direccion del sprite del jugador
+    /// </summary>
+    private void Update()
+    {
+        if (GameManager.inGame)
+        {
+            movement = Input.GetAxisRaw("Horizontal") * speed;
+            animator.SetInteger("velX", Mathf.RoundToInt(movement));
+            if (movement < General.Velocidades["nulo"])
+            {
+                sr.flipX = true;
+            }
+            else
+            {
+                sr.flipX = false;
+            }
+        }
     }
 
     /// <summary>
@@ -168,28 +188,6 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates this instance.
-    /// Cambia la direccion del sprite del jugador
-    /// </summary>
-    private void Update()
-    {
-        if (GameManager.inGame)
-        {
-            movement = Input.GetAxisRaw("Horizontal") * speed;
-            animator.SetInteger("velX", Mathf.RoundToInt(movement));
-            if (movement < General.Velocidades["nulo"])
-            {
-                sr.flipX = true;
-            }
-            else
-            {
-                sr.flipX = false;
-            }
-        }
-
-    }
-
-    /// <summary>
     /// Wins this instance.
     /// Cambia a animacion de ganar y desactiva el escudo
     /// </summary>
@@ -198,6 +196,7 @@ public class Player : MonoBehaviour
         shield.SetActive(false);
         animator.SetBool("win", true);
     }
+
     /// <summary>
     /// Ies the blinking.
     /// Corrutina de parpadeo
@@ -243,7 +242,6 @@ public class Player : MonoBehaviour
         else
         {
             rb.AddForce(new Vector2(10, 10), ForceMode2D.Impulse);
-
         }
     }
 }

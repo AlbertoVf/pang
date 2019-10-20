@@ -14,6 +14,14 @@ public class Dynamite : MonoBehaviour
     /// </summary>
     private bool inGround;
 
+    private void Update()
+    {
+        if (!inGround)
+        {
+            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
+        }
+    }
+
     /// <summary>
     /// Called when [trigger enter2 d].
     /// Comprueba si el item dinamita colisiono con el suelo o con el jugador
@@ -30,14 +38,6 @@ public class Dynamite : MonoBehaviour
         {
             Destroy(gameObject);
             BallManager.bm.Dynamite(5);
-        }
-    }
-
-    private void Update()
-    {
-        if (!inGround)
-        {
-            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
         }
     }
 }

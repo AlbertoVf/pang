@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+
 using System.Collections;
 
 using UnityEngine;
@@ -13,14 +14,17 @@ public class GameManager : MonoBehaviour
     /// Variable para haceder a la clase desde otras
     /// </summary>
     public static GameManager gm;
+
     /// <summary>
     /// Comprueba si se ha iniciado el juego
     /// </summary>
     public static bool inGame;
+
     /// <summary>
     /// Texto de inicio de nivel
     /// </summary>
     public GameObject ready;
+
     /// <summary>
     /// Awakes this instance.
     /// Establece la variable estatica de clase

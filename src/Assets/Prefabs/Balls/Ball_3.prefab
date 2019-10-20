@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd29623abfce58c47a30fe611feb8b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextBall: {fileID: 5663074908410429105, guid: cd03907ed4e57c24f9615bd906967f97,
+  nextBall: {fileID: 5663074908410429105, guid: c72f4ccb786c9a34c9270c6ed3383df1,
     type: 3}
   right: 0
   powerUp: {fileID: 6821155026989488458, guid: 936de18e228d03642a576dfbbaf47ae0, type: 3}
