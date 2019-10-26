@@ -44,6 +44,7 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     private Animator animator;
 
+    CurrentShotImage shotImage;
     /// <summary>
     /// Awakes this instance.
     /// Asigna la variable estatica y el jugador
@@ -59,6 +60,7 @@ public class ShotManager : MonoBehaviour
             Destroy(gameObject);
         }
         player = FindObjectOfType<Player>().transform;
+        shotImage = FindObjectOfType<CurrentShotImage>();
     }
 
     /// <summary>
@@ -112,24 +114,27 @@ public class ShotManager : MonoBehaviour
             {
                 case 0:
                     maxShots = 1;
+                    shotImage.CurrentShot("");
                     break;
-
                 case 1:
+                    shotImage.CurrentShot("Arrow");
                     maxShots = 2;
-
                     break;
-
                 case 2:
+                    shotImage.CurrentShot("Ancle");
                     maxShots = 1;
-
                     break;
-
                 case 3:
-                    maxShots = 5;
+                    shotImage.CurrentShot("Gun");
+                    maxShots = 3;
                     break;
             }
             typeOfShot = type;
             numberOfShots = 0;
+
+            int score = General.Puntuaciones["item"];
+            ScoreManager.sm.UpdateScore(score);
+            PopUpManager.pm.InstanciatePopUpText(transform.position, score);
         }
     }
 

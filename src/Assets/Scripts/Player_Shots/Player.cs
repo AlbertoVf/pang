@@ -131,27 +131,30 @@ public class Player : MonoBehaviour
     /// <param name="collision">The collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ball")
+        if (GameManager.inGame && !FreezeManager.fm.freeze)
         {
-            if (shield.activeInHierarchy)
+            if (collision.gameObject.tag == "Ball")
             {
-                shield.SetActive(false);
-                StartCoroutine(IEBlinking());
-            }
-            else
-            {
-                if (!blink)
+                if (shield.activeInHierarchy)
                 {
-                    StartCoroutine(IELose());
+                    shield.SetActive(false);
+                    StartCoroutine(IEBlinking());
+                }
+                else
+                {
+                    if (!blink)
+                    {
+                        StartCoroutine(IELose());
+                    }
                 }
             }
-        }
-        if (!GameManager.inGame && (collision.gameObject.tag == "Right" || collision.gameObject.tag == "Left"))
-        {
-            sr.flipX = !sr.flipX;
-            rb.velocity /= 3;
-            rb.velocity *= -1;
-            rb.AddForce(Vector3.up * 5, ForceMode2D.Impulse);
+            if (!GameManager.inGame && (collision.gameObject.tag == "Right" || collision.gameObject.tag == "Left"))
+            {
+                sr.flipX = !sr.flipX;
+                rb.velocity /= 3;
+                rb.velocity *= -1;
+                rb.AddForce(Vector3.up * 5, ForceMode2D.Impulse);
+            }
         }
     }
 

@@ -136,6 +136,9 @@ public class Ball : MonoBehaviour
         {
             BallManager.bm.LastBall(gameObject);
         }
+        int score = General.Puntuaciones["bola"];
+        PopUpManager.pm.InstanciatePopUpText(gameObject.transform.position, score);
+        ScoreManager.sm.UpdateScore(score);
     }
 
     /// <summary>

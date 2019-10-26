@@ -3,6 +3,7 @@
 using System.Collections;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Manager para gestionar el inicio de partida en cada nivel
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
     /// Texto de inicio de nivel
     /// </summary>
     public GameObject ready;
+   // private Player player;
+    public Text timeText;
+    float time = General.Tiempos["partida"];
 
     /// <summary>
     /// Awakes this instance.
@@ -43,7 +47,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        timeText.text = " TIME " + time.ToString("f0");
         StartCoroutine(IEGameStart());
+    }
+    private void Update()
+    {
+        if (inGame)
+        {
+            time -= Time.deltaTime;
+            timeText.text = " TIME " + time.ToString("f0");
+        }
     }
 
     /// <summary>
