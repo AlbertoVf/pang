@@ -23,7 +23,10 @@ public class BallManager : MonoBehaviour
     public List<GameObject> balls = new List<GameObject>();
 
     private Player player;
-
+    /// <summary>
+    /// Controla el numero de vidas
+    /// </summary>
+    LifeManager lm;
     /// <summary>
     /// The spliting
     /// Comprueba si esta explotando
@@ -41,6 +44,7 @@ public class BallManager : MonoBehaviour
             Destroy(gameObject);
         }
         player = FindObjectOfType<Player>();
+        lm = FindObjectOfType<LifeManager>();
     }
 
     private void Start()
@@ -54,6 +58,7 @@ public class BallManager : MonoBehaviour
         {
             player.Win();
             GameManager.inGame = false;
+            lm.LifeWin();
         }
     }
 

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -45,22 +47,24 @@ namespace Assets.Scripts
         };
 
         /// <summary>
-        /// Puntuaciones del juego.
+        /// Interfaz del juego. Las puntuaciones se general automaticamente y son diferentes en cada partida.
         /// inicial : puntuacion al comenzar una nueva partida
         /// actual : puntuacion durante la partida
         /// record : puntuacion maxima alcanzada
         /// bola : puntuacion al romper una bola
         /// fruit : puntuacion al coger un item de fruta
         /// item : puntuacion al coger un arma, oscudo u objeto
+        /// vida : numero de vidas.
         /// </summary>
-        public static Dictionary<string, int> Puntuaciones = new Dictionary<string, int>
+        public static Dictionary<string, int> Interfaz = new Dictionary<string, int>
         {
             ["inicial"] = 0,
             ["actual"] = 0,
             ["record"] = 0,
-            ["bola"] = Aleatorio(200,500),
-            ["fruit"] = Aleatorio(300,1000),
-            ["item"] = Aleatorio(100,300)
+            ["bola"] = Aleatorio(200, 500),
+            ["fruit"] = Aleatorio(300, 1000),
+            ["item"] = Aleatorio(100, 300),
+            ["vida"] = 3
         };
 
         /// <summary>
@@ -117,6 +121,7 @@ namespace Assets.Scripts
                 SceneManager.LoadScene(escena);
             }
         }
+
         /// <summary>
         /// Genera un numero aleatorio entre dos valores, ambos incluidos
         /// </summary>
@@ -125,9 +130,18 @@ namespace Assets.Scripts
         /// <returns>Numero</returns>
         static int Aleatorio(int min, int max)
         {
-            System.Random r = new System.Random();
-            int a = r.Next(min, max+1);
-            return a;
+            // System.Random r = new System.Random();
+            // int a = r.Next(min, max+1);
+            // return a;
+
+            var guid = Guid.NewGuid();
+            var justNumbers = new string(guid.ToString().Where(char.IsDigit).ToArray());
+            var seed = int.Parse(justNumbers.Substring(0, 4));
+
+            var random = new System.Random(seed);
+            var value = random.Next(min, max + 1);
+
+            return value;
         }
     }
 }

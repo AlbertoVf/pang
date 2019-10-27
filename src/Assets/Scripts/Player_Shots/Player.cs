@@ -3,6 +3,7 @@
 using System.Collections;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Gestiona el jugador
@@ -57,7 +58,10 @@ public class Player : MonoBehaviour
     /// The sr
     /// </summary>
     private SpriteRenderer sr;
-
+    /// <summary>
+    /// Controla el numero de vidas
+    /// </summary>
+    LifeManager lm;
     /// <summary>
     /// Awakes this instance.
     /// Asigna las variables
@@ -67,6 +71,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        lm = FindObjectOfType<LifeManager>();
     }
 
     /// <summary>
@@ -190,6 +195,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnBecameInvisible()
+    {
+        Invoke("ReloadLevel", General.Tiempos["cuentaAtras"]);
+    }
+
+    void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     /// <summary>
     /// Wins this instance.
     /// Cambia a animacion de ganar y desactiva el escudo
@@ -233,11 +247,14 @@ public class Player : MonoBehaviour
     private IEnumerator IELose()
     {
         GameManager.inGame = false;
+        lm.LifeLose();
 
         animator.SetBool("lose", true);
         BallManager.bm.LoseGame();
+
         yield return new WaitForSeconds(General.Tiempos["texto"]);
         rb.isKinematic = false;
+        
         if (transform.position.x < 0)
         {
             rb.AddForce(new Vector2(-10, 10), ForceMode2D.Impulse);

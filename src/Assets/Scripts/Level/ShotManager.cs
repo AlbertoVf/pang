@@ -132,7 +132,7 @@ public class ShotManager : MonoBehaviour
             typeOfShot = type;
             numberOfShots = 0;
 
-            int score = General.Puntuaciones["item"];
+            int score = General.Interfaz["item"];
             ScoreManager.sm.UpdateScore(score);
             PopUpManager.pm.InstanciatePopUpText(transform.position, score);
         }

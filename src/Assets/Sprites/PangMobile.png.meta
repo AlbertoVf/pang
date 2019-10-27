@@ -87,6 +87,7 @@ TextureImporter:
     21300164: fruit_10
     21300166: fruit_11
     21300168: PangMobile_20
+    21300170: PangMobile_21
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -818,8 +819,8 @@ TextureImporter:
         y: 95
         width: 20
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -838,8 +839,8 @@ TextureImporter:
         y: 95
         width: 20
         height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -858,8 +859,8 @@ TextureImporter:
         y: 95
         width: 20
         height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1266,6 +1267,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 073483335a0cb7945977b9e42a1a5cae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PangMobile_21
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 128
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6942dcf227add774fb7410ba06b140c9
       vertices: []
       indices: 
       edges: []

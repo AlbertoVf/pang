@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager sm;
     public Text scoreText;
-    int currentScore =General.Puntuaciones["inicial"];
+    int currentScore =General.Interfaz["inicial"];
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class ScoreManager : MonoBehaviour
     }
     void Start()
     {
-        currentScore = General.Puntuaciones["inicial"];
+        currentScore = General.Interfaz["inicial"];
         scoreText.text = currentScore.ToString();
        // UpdateScore();
     }
