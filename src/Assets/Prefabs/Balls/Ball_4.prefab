@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5663074908410429105}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,6 +59,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -94,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd29623abfce58c47a30fe611feb8b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextBall: {fileID: 4958091459818923746, guid: a9f5f9e3505873f4bb3bc24842a0786a,
+  nextBall: {fileID: 5663074908410429105, guid: e657d2f817233dd4c9c901bd4efc2f57,
     type: 3}
   right: 0
   powerUp: {fileID: 6821155026989488458, guid: 936de18e228d03642a576dfbbaf47ae0, type: 3}
