@@ -5,11 +5,17 @@
 /// </summary>
 public class Fruits : MonoBehaviour
 {
+    #region Public Fields
+
     /// <summary>
     /// The fruit item.
     /// Cada uno de los elementos del Array de frutas.
     /// </summary>
     public GameObject fruitItem;
+
+    #endregion Public Fields
+
+    #region Public Methods
 
     /// <summary>
     /// Instaciates the fruit.
@@ -19,4 +25,6 @@ public class Fruits : MonoBehaviour
     {
         Instantiate(fruitItem, transform.position, Quaternion.identity);
     }
+
+    #endregion Public Methods
 }

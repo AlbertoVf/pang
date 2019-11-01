@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class ShotManager : MonoBehaviour
 {
+    #region Public Fields
+
     /// <summary>
     /// The SHM.
     /// Variable estatica para acceder a la clase desde otras
@@ -20,9 +22,18 @@ public class ShotManager : MonoBehaviour
     public GameObject[] Shots;
 
     /// <summary>
-    /// The player
+    /// The type of shot.
     /// </summary>
-    private Transform player;
+    public int typeOfShot;
+
+    #endregion Public Fields
+
+    #region Private Fields
+
+    /// <summary>
+    /// The animator
+    /// </summary>
+    private Animator animator;
 
     /// <summary>
     /// The maximum shots
@@ -35,16 +46,70 @@ public class ShotManager : MonoBehaviour
     private int numberOfShots = 0;
 
     /// <summary>
-    /// The type of shot.
+    /// The player
     /// </summary>
-    public int typeOfShot;
+    private Transform player;
+
+    private CurrentShotImage shotImage;
+
+    #endregion Private Fields
+
+    #region Public Methods
 
     /// <summary>
-    /// The animator
+    /// Changes the shot. Intercambia el tipo de desparo
     /// </summary>
-    private Animator animator;
+    /// <param name="type">The type. 0: arrow, 1: double arrow, 2: ancle, 3: laser</param>
+    public void ChangeShot(int type)
+    {
+        if (typeOfShot != type)
+        {
+            switch (type)
+            {
+                case 0:
+                    maxShots = 1;
+                    shotImage.CurrentShot("");
+                    break;
 
-    CurrentShotImage shotImage;
+                case 1:
+                    shotImage.CurrentShot("Arrow");
+                    maxShots = 2;
+                    break;
+
+                case 2:
+                    shotImage.CurrentShot("Ancle");
+                    maxShots = 1;
+                    break;
+
+                case 3:
+                    shotImage.CurrentShot("Gun");
+                    maxShots = 3;
+                    break;
+            }
+            typeOfShot = type;
+            numberOfShots = 0;
+
+            int score = General.Interfaz["item"];
+            ScoreManager.sm.UpdateScore(score);
+            PopUpManager.pm.InstanciatePopUpText(transform.position, score);
+        }
+    }
+
+    /// <summary>
+    /// Destruye el proyectil
+    /// </summary>
+    public void DestroyShot()
+    {
+        if (numberOfShots > 0 && numberOfShots < maxShots)
+        {
+            numberOfShots--;
+        }
+    }
+
+    #endregion Public Methods
+
+    #region Private Methods
+
     /// <summary>
     /// Awakes this instance.
     /// Asigna la variable estatica y el jugador
@@ -61,6 +126,38 @@ public class ShotManager : MonoBehaviour
         }
         player = FindObjectOfType<Player>().transform;
         shotImage = FindObjectOfType<CurrentShotImage>();
+    }
+
+    /// <summary>
+    /// Comprueba si el jugador puede disparar
+    /// </summary>
+    /// <returns>true si puede disparar</returns>
+    private bool CanShot()
+    {
+        if (numberOfShots < maxShots)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Shots this instance.
+    /// Instancia un nuevo disparo
+    /// </summary>
+    private void Shot()
+    {
+        if (typeOfShot != 3)
+        {
+            Instantiate(Shots[typeOfShot], player.position - new Vector3(0, 0.15f, 0), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(Shots[3], new Vector2(player.position.x + .5f, player.position.y + 1.15f), Quaternion.Euler(new Vector3(0, 0, -5)));
+            Instantiate(Shots[3], new Vector2(player.position.x, player.position.y + 1.15f), Quaternion.identity);
+            Instantiate(Shots[3], new Vector2(player.position.x - .5f, player.position.y + 1.15f), Quaternion.Euler(new Vector3(0, 0, 5)));
+        }
+        numberOfShots++;
     }
 
     /// <summary>
@@ -89,82 +186,5 @@ public class ShotManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Comprueba si el jugador puede disparar
-    /// </summary>
-    /// <returns>true si puede disparar</returns>
-    private bool CanShot()
-    {
-        if (numberOfShots < maxShots)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Changes the shot. Intercambia el tipo de desparo
-    /// </summary>
-    /// <param name="type">The type. 0: arrow, 1: double arrow, 2: ancle, 3: laser</param>
-    public void ChangeShot(int type)
-    {
-        if (typeOfShot != type)
-        {
-            switch (type)
-            {
-                case 0:
-                    maxShots = 1;
-                    shotImage.CurrentShot("");
-                    break;
-                case 1:
-                    shotImage.CurrentShot("Arrow");
-                    maxShots = 2;
-                    break;
-                case 2:
-                    shotImage.CurrentShot("Ancle");
-                    maxShots = 1;
-                    break;
-                case 3:
-                    shotImage.CurrentShot("Gun");
-                    maxShots = 3;
-                    break;
-            }
-            typeOfShot = type;
-            numberOfShots = 0;
-
-            int score = General.Interfaz["item"];
-            ScoreManager.sm.UpdateScore(score);
-            PopUpManager.pm.InstanciatePopUpText(transform.position, score);
-        }
-    }
-
-    /// <summary>
-    /// Destruye el proyectil
-    /// </summary>
-    public void DestroyShot()
-    {
-        if (numberOfShots > 0 && numberOfShots < maxShots)
-        {
-            numberOfShots--;
-        }
-    }
-
-    /// <summary>
-    /// Shots this instance.
-    /// Instancia un nuevo disparo
-    /// </summary>
-    private void Shot()
-    {
-        if (typeOfShot != 3)
-        {
-            Instantiate(Shots[typeOfShot], player.position - new Vector3(0, 0.15f, 0), Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(Shots[3], new Vector2(player.position.x + .5f, player.position.y + 1.15f), Quaternion.Euler(new Vector3(0, 0, -5)));
-            Instantiate(Shots[3], new Vector2(player.position.x, player.position.y + 1.15f), Quaternion.identity);
-            Instantiate(Shots[3], new Vector2(player.position.x - .5f, player.position.y + 1.15f), Quaternion.Euler(new Vector3(0, 0, 5)));
-        }
-        numberOfShots++;
-    }
+    #endregion Private Methods
 }

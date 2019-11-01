@@ -8,19 +8,17 @@ using UnityEngine;
 /// </summary>
 public class Dynamite : MonoBehaviour
 {
+    #region Private Fields
+
     /// <summary>
     /// The in ground.
     /// Booleano para comprobar si esta en el suelo
     /// </summary>
     private bool inGround;
 
-    private void Update()
-    {
-        if (!inGround)
-        {
-            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
-        }
-    }
+    #endregion Private Fields
+
+    #region Private Methods
 
     /// <summary>
     /// Called when [trigger enter2 d].
@@ -40,4 +38,14 @@ public class Dynamite : MonoBehaviour
             BallManager.bm.Dynamite(5);
         }
     }
+
+    private void Update()
+    {
+        if (!inGround)
+        {
+            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
+        }
+    }
+
+    #endregion Private Methods
 }

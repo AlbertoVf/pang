@@ -10,10 +10,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class Player : MonoBehaviour
 {
-    /// <summary>
-    /// The animator
-    /// </summary>
-    private Animator animator;
+    #region Public Fields
 
     /// <summary>
     /// The blink
@@ -22,10 +19,30 @@ public class Player : MonoBehaviour
     public bool blink;
 
     /// <summary>
+    /// The shield
+    /// Comprueba si esta activado el escudo
+    /// </summary>
+    public GameObject shield;
+
+    #endregion Public Fields
+
+    #region Private Fields
+
+    /// <summary>
+    /// The animator
+    /// </summary>
+    private Animator animator;
+
+    /// <summary>
     /// The left wall
     /// Comprueba si colisiona con el muro derecho
     /// </summary>
     private bool leftWall;
+
+    /// <summary>
+    /// Controla el numero de vidas
+    /// </summary>
+    private LifeManager lm;
 
     /// <summary>
     /// The movement
@@ -44,12 +61,6 @@ public class Player : MonoBehaviour
     private bool rightWall;
 
     /// <summary>
-    /// The shield
-    /// Comprueba si esta activado el escudo
-    /// </summary>
-    public GameObject shield;
-
-    /// <summary>
     /// The speed
     /// </summary>
     private float speed = General.Velocidades["normal"];
@@ -58,10 +69,25 @@ public class Player : MonoBehaviour
     /// The sr
     /// </summary>
     private SpriteRenderer sr;
+
+    #endregion Private Fields
+
+    #region Public Methods
+
     /// <summary>
-    /// Controla el numero de vidas
+    /// Wins this instance.
+    /// Cambia a animacion de ganar y desactiva el escudo
     /// </summary>
-    LifeManager lm;
+    public void Win()
+    {
+        shield.SetActive(false);
+        animator.SetBool("win", true);
+    }
+
+    #endregion Public Methods
+
+    #region Private Methods
+
     /// <summary>
     /// Awakes this instance.
     /// Asigna las variables
@@ -109,24 +135,59 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates this instance.
-    /// Cambia la direccion del sprite del jugador
+    /// Ies the blinking.
+    /// Corrutina de parpadeo
     /// </summary>
-    private void Update()
+    /// <returns></returns>
+    private IEnumerator IEBlinking()
     {
-        if (GameManager.inGame)
+        blink = true;
+        for (int i = 0; i < General.Tiempos["cuentaAtras"]; i++)
         {
-            movement = Input.GetAxisRaw("Horizontal") * speed;
-            animator.SetInteger("velX", Mathf.RoundToInt(movement));
-            if (movement < General.Velocidades["nulo"])
+            if (blink && GameManager.inGame)
             {
-                sr.flipX = true;
+                sr.color = new Color(1, 1, 1, 0);
+                yield return new WaitForSeconds(General.Tiempos["parpadeo"]);
+                sr.color = new Color(1, 1, 1, 1);
+                yield return new WaitForSeconds(General.Tiempos["parpadeo"]);
             }
             else
             {
-                sr.flipX = false;
+                break;
             }
         }
+        blink = false;
+    }
+
+    /// <summary>
+    /// Ies the lose.
+    /// Corrutina la perdida de partida. Cambio de animacion y fuerza para sacar al personaje de la pantalla
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator IELose()
+    {
+        GameManager.inGame = false;
+        lm.LifeLose();
+
+        animator.SetBool("lose", true);
+        BallManager.bm.LoseGame();
+
+        yield return new WaitForSeconds(General.Tiempos["texto"]);
+        rb.isKinematic = false;
+
+        if (transform.position.x < 0)
+        {
+            rb.AddForce(new Vector2(-10, 10), ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(new Vector2(10, 10), ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnBecameInvisible()
+    {
+        Invoke("ReloadLevel", General.Tiempos["cuentaAtras"]);
     }
 
     /// <summary>
@@ -195,73 +256,31 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnBecameInvisible()
-    {
-        Invoke("ReloadLevel", General.Tiempos["cuentaAtras"]);
-    }
-
-    void ReloadLevel()
+    private void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    /// <summary>
-    /// Wins this instance.
-    /// Cambia a animacion de ganar y desactiva el escudo
-    /// </summary>
-    public void Win()
-    {
-        shield.SetActive(false);
-        animator.SetBool("win", true);
-    }
 
     /// <summary>
-    /// Ies the blinking.
-    /// Corrutina de parpadeo
+    /// Updates this instance.
+    /// Cambia la direccion del sprite del jugador
     /// </summary>
-    /// <returns></returns>
-    private IEnumerator IEBlinking()
+    private void Update()
     {
-        blink = true;
-        for (int i = 0; i < General.Tiempos["cuentaAtras"]; i++)
+        if (GameManager.inGame)
         {
-            if (blink && GameManager.inGame)
+            movement = Input.GetAxisRaw("Horizontal") * speed;
+            animator.SetInteger("velX", Mathf.RoundToInt(movement));
+            if (movement < General.Velocidades["nulo"])
             {
-                sr.color = new Color(1, 1, 1, 0);
-                yield return new WaitForSeconds(General.Tiempos["parpadeo"]);
-                sr.color = new Color(1, 1, 1, 1);
-                yield return new WaitForSeconds(General.Tiempos["parpadeo"]);
+                sr.flipX = true;
             }
             else
             {
-                break;
+                sr.flipX = false;
             }
         }
-        blink = false;
     }
 
-    /// <summary>
-    /// Ies the lose.
-    /// Corrutina la perdida de partida. Cambio de animacion y fuerza para sacar al personaje de la pantalla
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator IELose()
-    {
-        GameManager.inGame = false;
-        lm.LifeLose();
-
-        animator.SetBool("lose", true);
-        BallManager.bm.LoseGame();
-
-        yield return new WaitForSeconds(General.Tiempos["texto"]);
-        rb.isKinematic = false;
-        
-        if (transform.position.x < 0)
-        {
-            rb.AddForce(new Vector2(-10, 10), ForceMode2D.Impulse);
-        }
-        else
-        {
-            rb.AddForce(new Vector2(10, 10), ForceMode2D.Impulse);
-        }
-    }
+    #endregion Private Methods
 }

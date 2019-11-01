@@ -7,18 +7,16 @@ using UnityEngine;
 /// </summary>
 public class Shield : MonoBehaviour
 {
+    #region Private Fields
+
     /// <summary>
     /// The in ground. Comprueba si esta en el suelo
     /// </summary>
     private bool inGround;
 
-    private void Update()
-    {
-        if (!inGround)
-        {
-            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
-        }
-    }
+    #endregion Private Fields
+
+    #region Private Methods
 
     /// <summary>
     /// Called when [trigger enter2 d].
@@ -39,4 +37,14 @@ public class Shield : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Update()
+    {
+        if (!inGround)
+        {
+            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
+        }
+    }
+
+    #endregion Private Methods
 }

@@ -7,22 +7,22 @@ using UnityEngine;
 /// </summary>
 public class PressStart : MonoBehaviour
 {
+    #region Public Fields
+
     public GameObject pressStart;
+
+    #endregion Public Fields
+
+    #region Private Fields
 
     /// <summary>
     /// The time
     /// </summary>
     private float time;
 
-    /// <summary>
-    /// Updates this instance.
-    /// Carga la escena de modo de juego.
-    /// </summary>
-    private void Update()
-    {
-        ParpadeoTexto(pressStart);
-        General.CargarEscena(1);
-    }
+    #endregion Private Fields
+
+    #region Private Methods
 
     /// <summary>
     /// Parpadeo the texto.
@@ -41,4 +41,16 @@ public class PressStart : MonoBehaviour
             gm.SetActive(false);
         }
     }
+
+    /// <summary>
+    /// Updates this instance.
+    /// Carga la escena de modo de juego.
+    /// </summary>
+    private void Update()
+    {
+        ParpadeoTexto(pressStart);
+        General.CargarEscena(1);
+    }
+
+    #endregion Private Methods
 }

@@ -7,11 +7,17 @@ using UnityEngine;
 /// </summary>
 public class PopUpText : MonoBehaviour
 {
+    #region Public Fields
+
     /// <summary>
     /// The star position.
     /// Posicion en la que aparecera el texto.
     /// </summary>
     public Vector2 starPos;
+
+    #endregion Public Fields
+
+    #region Private Methods
 
     private void Start()
     {
@@ -26,4 +32,6 @@ public class PopUpText : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    #endregion Private Methods
 }

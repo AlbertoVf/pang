@@ -10,29 +10,13 @@ using UnityEngine.UI;
 /// </summary>
 public class FreezeManager : MonoBehaviour
 {
+    #region Public Fields
+
     /// <summary>
     /// The fm
     /// Variable estatica de clase
     /// </summary>
     public static FreezeManager fm;
-
-    /// <summary>
-    /// The freeze time text
-    /// Texto con el tiempo de congelacion
-    /// </summary>
-    public Text freezeTimeText;
-
-    /// <summary>
-    /// The freeze time count
-    /// Cuenta atras para descongelar las bolas
-    /// </summary>
-    public GameObject freezeTimeCount;
-
-    /// <summary>
-    /// The freeze time
-    /// Tiempo de congelacion de las bolas
-    /// </summary>
-    private float freezeTime;
 
     /// <summary>
     /// The freeze
@@ -41,42 +25,30 @@ public class FreezeManager : MonoBehaviour
     public bool freeze;
 
     /// <summary>
-    /// Awakes this instance.
-    /// Asigna la variable estatica de la clase
+    /// The freeze time count
+    /// Cuenta atras para descongelar las bolas
     /// </summary>
-    private void Awake()
-    {
-        if (fm == null)
-        {
-            fm = this;
-        }
-        else if (fm != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+    public GameObject freezeTimeCount;
 
     /// <summary>
-    /// Starts this instance.
-    /// Desactiva el tiempo de congelacion
+    /// The freeze time text
+    /// Texto con el tiempo de congelacion
     /// </summary>
-    private void Start()
-    {
-        freezeTimeCount.SetActive(false);
-    }
+    public Text freezeTimeText;
+
+    #endregion Public Fields
+
+    #region Private Fields
 
     /// <summary>
-    /// Starts the freeze.
-    /// Inicia la corrutina que congela las bolas durante un tiempo determinado
+    /// The freeze time
+    /// Tiempo de congelacion de las bolas
     /// </summary>
-    public void StartFreeze()
-    {
-        freezeTime = General.Tiempos["cuentaAtras"];
-        if (!freeze)
-        {
-            StartCoroutine(IEFreezeTime());
-        }
-    }
+    private float freezeTime;
+
+    #endregion Private Fields
+
+    #region Public Methods
 
     /// <summary>
     /// Ies the freeze time.
@@ -111,4 +83,48 @@ public class FreezeManager : MonoBehaviour
         }
         freeze = false;
     }
+
+    /// <summary>
+    /// Starts the freeze.
+    /// Inicia la corrutina que congela las bolas durante un tiempo determinado
+    /// </summary>
+    public void StartFreeze()
+    {
+        freezeTime = General.Tiempos["cuentaAtras"];
+        if (!freeze)
+        {
+            StartCoroutine(IEFreezeTime());
+        }
+    }
+
+    #endregion Public Methods
+
+    #region Private Methods
+
+    /// <summary>
+    /// Awakes this instance.
+    /// Asigna la variable estatica de la clase
+    /// </summary>
+    private void Awake()
+    {
+        if (fm == null)
+        {
+            fm = this;
+        }
+        else if (fm != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Starts this instance.
+    /// Desactiva el tiempo de congelacion
+    /// </summary>
+    private void Start()
+    {
+        freezeTimeCount.SetActive(false);
+    }
+
+    #endregion Private Methods
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,8 @@ namespace Assets.Scripts
     /// </summary>
     internal class General
     {
+        #region Public Fields
+
         /// <summary>
         /// The escala gravedad. Escala de gravedad de los objetos. La gravedad por defecto es de (-9.81f)
         /// baja : la gravedad es la mitad
@@ -25,14 +28,30 @@ namespace Assets.Scripts
         };
 
         /// <summary>
-        /// Gestiona las teclas que se utilizaran en el juego.
+        /// Interfaz del juego. Las puntuaciones se general automaticamente y son diferentes en cada partida.
+        /// inicial : puntuacion al comenzar una nueva partida
+        /// actual : puntuacion durante la partida
+        /// record : puntuacion maxima alcanzada
+        /// bola : puntuacion al romper una bola
+        /// fruit : puntuacion al coger un item de fruta
+        /// item : puntuacion al coger un arma, oscudo u objeto
+        /// vida : numero de vidas
+        /// cuentaBola : puntos de cada bola al acabar el nivel
+        /// cuentaFruit : puntos de cada fruta al acabar el nivel
+        /// cuentaTiempo : puntos por cada segundo restante
         /// </summary>
-        public static Dictionary<string, KeyCode> Teclas = new Dictionary<string, KeyCode>
+        public static Dictionary<string, int> Interfaz = new Dictionary<string, int>
         {
-            ["start"] = KeyCode.Return,
-            ["derecha"] = KeyCode.RightArrow,
-            ["izquierda"] = KeyCode.LeftArrow,
-            ["disparar"] = KeyCode.Space
+            ["inicial"] = 0,
+            ["actual"] = 0,
+            ["record"] = 0,
+            ["bola"] = Aleatorio(200, 500),
+            ["fruit"] = Aleatorio(300, 1000),
+            ["item"] = Aleatorio(100, 300),
+            ["vida"] = 3,
+            ["cuentaBola"] = 75,
+            ["cuentaFruit"] = 150,
+            ["cuentaTiempo"] = 25
         };
 
         /// <summary>
@@ -47,24 +66,14 @@ namespace Assets.Scripts
         };
 
         /// <summary>
-        /// Interfaz del juego. Las puntuaciones se general automaticamente y son diferentes en cada partida.
-        /// inicial : puntuacion al comenzar una nueva partida
-        /// actual : puntuacion durante la partida
-        /// record : puntuacion maxima alcanzada
-        /// bola : puntuacion al romper una bola
-        /// fruit : puntuacion al coger un item de fruta
-        /// item : puntuacion al coger un arma, oscudo u objeto
-        /// vida : numero de vidas.
+        /// Gestiona las teclas que se utilizaran en el juego.
         /// </summary>
-        public static Dictionary<string, int> Interfaz = new Dictionary<string, int>
+        public static Dictionary<string, KeyCode> Teclas = new Dictionary<string, KeyCode>
         {
-            ["inicial"] = 0,
-            ["actual"] = 0,
-            ["record"] = 0,
-            ["bola"] = Aleatorio(200, 500),
-            ["fruit"] = Aleatorio(300, 1000),
-            ["item"] = Aleatorio(100, 300),
-            ["vida"] = 3
+            ["start"] = KeyCode.Return,
+            ["derecha"] = KeyCode.RightArrow,
+            ["izquierda"] = KeyCode.LeftArrow,
+            ["disparar"] = KeyCode.Space
         };
 
         /// <summary>
@@ -98,6 +107,10 @@ namespace Assets.Scripts
             ["muyRapido"] = 8f
         };
 
+        #endregion Public Fields
+
+        #region Public Methods
+
         /// <summary>
         /// Carga una escena al presionar la tecla enter.
         /// </summary>
@@ -122,13 +135,17 @@ namespace Assets.Scripts
             }
         }
 
+        #endregion Public Methods
+
+        #region Private Methods
+
         /// <summary>
         /// Genera un numero aleatorio entre dos valores, ambos incluidos
         /// </summary>
         /// <param name="min">Valor minimo</param>
         /// <param name="max">Valor maximo</param>
         /// <returns>Numero</returns>
-        static int Aleatorio(int min, int max)
+        private static int Aleatorio(int min, int max)
         {
             // System.Random r = new System.Random();
             // int a = r.Next(min, max+1);
@@ -143,5 +160,7 @@ namespace Assets.Scripts
 
             return value;
         }
+
+        #endregion Private Methods
     }
 }

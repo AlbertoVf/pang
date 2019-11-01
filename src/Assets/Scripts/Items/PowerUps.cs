@@ -7,11 +7,7 @@ using UnityEngine;
 /// </summary>
 public class PowerUps : MonoBehaviour
 {
-    /// <summary>
-    /// The in ground.
-    /// Variable que comprueba si esta en el suelo
-    /// </summary>
-    private bool inGround;
+    #region Public Fields
 
     /// <summary>
     /// The power ups animated.
@@ -25,42 +21,29 @@ public class PowerUps : MonoBehaviour
     /// </summary>
     public Sprite[] powerUpsStatic;
 
+    #endregion Public Fields
+
+    #region Private Fields
+
+    /// <summary>
+    /// The in ground.
+    /// Variable que comprueba si esta en el suelo
+    /// </summary>
+    private bool inGround;
+
     /// <summary>
     /// The sr.
     /// Dibuja los items
     /// </summary>
     private SpriteRenderer sr;
 
+    #endregion Private Fields
+
+    #region Private Methods
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-    }
-
-    /// <summary>
-    /// Starts this instance.
-    /// Establece si se genera un powerUp de la lista de estaticos o de la lista de animados
-    /// </summary>
-    private void Start()
-    {
-        int r = Random.Range(0, 2);
-        if (r == 0)
-        {
-            sr.sprite = powerUpsStatic[Random.Range(0, powerUpsStatic.Length)];
-            gameObject.name = sr.sprite.name;
-        }
-        else
-        {
-            Instantiate(powerUpsAnimated[Random.Range(0, powerUpsAnimated.Length)], transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
-    }
-
-    private void Update()
-    {
-        if (!inGround)
-        {
-            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
-        }
     }
 
     /// <summary>
@@ -101,4 +84,33 @@ public class PowerUps : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    /// <summary>
+    /// Starts this instance.
+    /// Establece si se genera un powerUp de la lista de estaticos o de la lista de animados
+    /// </summary>
+    private void Start()
+    {
+        int r = Random.Range(0, 2);
+        if (r == 0)
+        {
+            sr.sprite = powerUpsStatic[Random.Range(0, powerUpsStatic.Length)];
+            gameObject.name = sr.sprite.name;
+        }
+        else
+        {
+            Instantiate(powerUpsAnimated[Random.Range(0, powerUpsAnimated.Length)], transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (!inGround)
+        {
+            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
+        }
+    }
+
+    #endregion Private Methods
 }

@@ -10,6 +10,8 @@ using UnityEngine;
 /// </summary>
 public class BallManager : MonoBehaviour
 {
+    #region Public Fields
+
     /// <summary>
     /// The bm.
     /// Variable estatica para acceder a la clase desde otras.
@@ -22,45 +24,29 @@ public class BallManager : MonoBehaviour
     /// </summary>
     public List<GameObject> balls = new List<GameObject>();
 
-    private Player player;
-    /// <summary>
-    /// Controla el numero de vidas
-    /// </summary>
-    LifeManager lm;
+    public GameObject panel;
+
     /// <summary>
     /// The spliting
     /// Comprueba si esta explotando
     /// </summary>
     public bool spliting;
 
-    private void Awake()
-    {
-        if (bm == null)
-        {
-            bm = this;
-        }
-        else if (bm != this)
-        {
-            Destroy(gameObject);
-        }
-        player = FindObjectOfType<Player>();
-        lm = FindObjectOfType<LifeManager>();
-    }
+    #endregion Public Fields
 
-    private void Start()
-    {
-        balls.AddRange(GameObject.FindGameObjectsWithTag("Ball"));
-    }
+    #region Private Fields
 
-    private void Update()
-    {
-        if (balls.Count == 0)
-        {
-            player.Win();
-            GameManager.inGame = false;
-            lm.LifeWin();
-        }
-    }
+    /// <summary>
+    /// Controla el numero de vidas
+    /// </summary>
+    private LifeManager lm;
+
+    private PanelPoints panelPoints;
+    private Player player;
+
+    #endregion Private Fields
+
+    #region Public Methods
 
     /// <summary>
     /// Aleatories the number.
@@ -95,82 +81,6 @@ public class BallManager : MonoBehaviour
     public void Dynamite(int maxNumberBalls)
     {
         StartCoroutine(IEDynamite(maxNumberBalls));
-    }
-
-    /// <summary>
-    /// Finds the balls. Comprueba todos los componentes que estan en escena buscando las bolas que tengan el mismo tipo que se pasa por parametro y destrullendolas hasta alcancar el nivel mas pequeño
-    /// </summary>
-    /// <param name="typeOfBall">The type of ball. Tipo de bola numerado desde el 5 hacia bajo, desde el mayor al menor</param>
-    /// <returns>Lista con las bolas que se van a destruir</returns>
-    private List<GameObject> FindBalls(int typeOfBall)
-    {
-        List<GameObject> ballsToDestroy = new List<GameObject>();
-        for (int i = 0; i < balls.Count; i++)
-        {
-            if (balls[i].GetComponent<Ball>().name.Contains(typeOfBall.ToString()) && balls[i] != null)
-            {
-                ballsToDestroy.Add(balls[i]);
-            }
-        }
-        return ballsToDestroy;
-    }
-
-    /// <summary>
-    /// Lasts the ball.
-    /// Destruye la bola mas pequeña sin generar ninguna.
-    /// </summary>
-    /// <param name="ball">The ball.</param>
-    public void LastBall(GameObject ball)
-    {
-        Destroy(ball);
-        balls.Remove(ball);
-    }
-
-    public void LoseGame()
-    {
-        foreach (GameObject item in balls)
-        {
-            item.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            item.GetComponent<Rigidbody2D>().isKinematic = true;
-        }
-    }
-
-    /// <summary>
-    /// Reloads the list. Recarga la lista de bolas en juego
-    /// </summary>
-    private void ReloadList()
-    {
-        balls.Clear();
-        balls.AddRange(GameObject.FindGameObjectsWithTag("Ball"));
-    }
-
-    /// <summary>
-    /// Slows the time.
-    /// Inicia la ralentizacion del movimiento de las bolas en juego
-    /// </summary>
-    public void SlowTime()
-    {
-        StartCoroutine(IETimeSlow());
-    }
-
-    /// <summary>
-    /// Starts the game.
-    /// Inicia el juego impulsando las bolas a derecha o izquierda de manera aleatoria
-    /// </summary>
-    public void StartGame()
-    {
-        foreach (GameObject item in balls)
-        {
-            if (balls.IndexOf(item) % 2 == 0)
-            {
-                item.GetComponent<Ball>().right = true;
-            }
-            else
-            {
-                item.GetComponent<Ball>().right = false;
-            }
-            item.GetComponent<Ball>().StartForce(item);
-        }
     }
 
     /// <summary>
@@ -226,4 +136,118 @@ public class BallManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Lasts the ball.
+    /// Destruye la bola mas pequeña sin generar ninguna.
+    /// </summary>
+    /// <param name="ball">The ball.</param>
+    public void LastBall(GameObject ball)
+    {
+        Destroy(ball);
+        balls.Remove(ball);
+    }
+
+    public void LoseGame()
+    {
+        foreach (GameObject item in balls)
+        {
+            item.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            item.GetComponent<Rigidbody2D>().isKinematic = true;
+        }
+    }
+
+    /// <summary>
+    /// Slows the time.
+    /// Inicia la ralentizacion del movimiento de las bolas en juego
+    /// </summary>
+    public void SlowTime()
+    {
+        StartCoroutine(IETimeSlow());
+    }
+
+    /// <summary>
+    /// Starts the game.
+    /// Inicia el juego impulsando las bolas a derecha o izquierda de manera aleatoria
+    /// </summary>
+    public void StartGame()
+    {
+        foreach (GameObject item in balls)
+        {
+            if (balls.IndexOf(item) % 2 == 0)
+            {
+                item.GetComponent<Ball>().right = true;
+            }
+            else
+            {
+                item.GetComponent<Ball>().right = false;
+            }
+            item.GetComponent<Ball>().StartForce(item);
+        }
+    }
+
+    #endregion Public Methods
+
+    #region Private Methods
+
+    private void Awake()
+    {
+        if (bm == null)
+        {
+            bm = this;
+        }
+        else if (bm != this)
+        {
+            Destroy(gameObject);
+        }
+        player = FindObjectOfType<Player>();
+        lm = FindObjectOfType<LifeManager>();
+    }
+
+    /// <summary>
+    /// Finds the balls. Comprueba todos los componentes que estan en escena buscando las bolas que tengan el mismo tipo que se pasa por parametro y destrullendolas hasta alcancar el nivel mas pequeño
+    /// </summary>
+    /// <param name="typeOfBall">The type of ball. Tipo de bola numerado desde el 5 hacia bajo, desde el mayor al menor</param>
+    /// <returns>Lista con las bolas que se van a destruir</returns>
+    private List<GameObject> FindBalls(int typeOfBall)
+    {
+        List<GameObject> ballsToDestroy = new List<GameObject>();
+        for (int i = 0; i < balls.Count; i++)
+        {
+            if (balls[i].GetComponent<Ball>().name.Contains(typeOfBall.ToString()) && balls[i] != null)
+            {
+                ballsToDestroy.Add(balls[i]);
+            }
+        }
+        return ballsToDestroy;
+    }
+
+    /// <summary>
+    /// Reloads the list. Recarga la lista de bolas en juego
+    /// </summary>
+    private void ReloadList()
+    {
+        balls.Clear();
+        balls.AddRange(GameObject.FindGameObjectsWithTag("Ball"));
+    }
+
+    private void Start()
+    {
+        balls.AddRange(GameObject.FindGameObjectsWithTag("Ball"));
+    }
+
+    private void Update()
+    {
+        if (balls.Count == 0)
+        {
+            player.Win();
+            GameManager.inGame = false;
+            lm.LifeWin();
+
+            panel.SetActive(true);
+            panelPoints = panel.GetComponent<PanelPoints>();
+        }
+    }
+
+    #endregion Private Methods
 }

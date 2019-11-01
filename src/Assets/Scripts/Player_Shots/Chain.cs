@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Chain : MonoBehaviour
 {
+    #region Private Methods
+
     /// <summary>
     /// Updates this instance.
     /// Crea el recorrido de la cadena a la velocidad de la flecha/ancla.
@@ -18,4 +20,6 @@ public class Chain : MonoBehaviour
             transform.localScale += Vector3.up * Time.deltaTime * General.Velocidades["normal"];
         }
     }
+
+    #endregion Private Methods
 }

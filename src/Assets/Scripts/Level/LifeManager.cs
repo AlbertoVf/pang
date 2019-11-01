@@ -1,17 +1,36 @@
 ﻿using Assets.Scripts;
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LifeManager : MonoBehaviour
 {
+    #region Public Fields
+
+    public GameObject lifeDoll;
     public int lifes = General.Interfaz["vida"];
     public Text lifesText;
-    public GameObject lifeDoll;
-    Animator animator;
 
-    private void Awake()
+    #endregion Public Fields
+
+    #region Private Fields
+
+    private Animator animator;
+
+    #endregion Private Fields
+
+    #region Public Methods
+
+    public void LifeLose()
     {
-        animator = lifeDoll.GetComponent<Animator>();
+        animator.SetBool("win", false);
+        animator.SetBool("lose", true);
+    }
+
+    public void LifeWin()
+    {
+        animator.SetBool("lose", false);
+        animator.SetBool("win", true);
     }
 
     public void UpdateLifes(int life)
@@ -26,15 +45,15 @@ public class LifeManager : MonoBehaviour
         }
         lifesText.text = "X " + lifes.ToString();
     }
-    public void LifeWin()
-    {
-        animator.SetBool("lose", false);
-        animator.SetBool("win", true);
-    }
-    public void LifeLose()
-    {
-        animator.SetBool("win", false);
-        animator.SetBool("lose", true);
 
+    #endregion Public Methods
+
+    #region Private Methods
+
+    private void Awake()
+    {
+        animator = lifeDoll.GetComponent<Animator>();
     }
+
+    #endregion Private Methods
 }

@@ -3,6 +3,7 @@
 using System.Collections;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -10,6 +11,8 @@ using UnityEngine.UI;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    #region Public Fields
+
     /// <summary>
     /// The gm
     /// Variable para haceder a la clase desde otras
@@ -21,13 +24,57 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static bool inGame;
 
+    public int ballsDestroyed = 0;
+    public int fruitsCatched = 0;
+
     /// <summary>
     /// Texto de inicio de nivel
     /// </summary>
     public GameObject ready;
-   // private Player player;
+
+    public float time = General.Tiempos["partida"];
     public Text timeText;
-    float time = General.Tiempos["partida"];
+
+    #endregion Public Fields
+
+    #region Private Fields
+
+    private Fruits fruits;
+
+    #endregion Private Fields
+
+    #region Public Methods
+
+    /// <summary>
+    /// Ies the game start.
+    /// Inicia el nivel
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator IEGameStart()
+    {
+        yield return new WaitForSeconds(General.Tiempos["cuentaAtras"]);
+        ready.SetActive(false);
+        BallManager.bm.StartGame();
+        inGame = true;
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void UpdateBallDestroyed()
+    {
+        ballsDestroyed++;
+        if (ballsDestroyed % Random.Range(3, 13) == 0 && BallManager.bm.balls.Count > 0)
+        {
+            fruits.InstaciateFruit();
+        }
+    }
+
+    #endregion Public Methods
+
+    #region Private Methods
 
     /// <summary>
     /// Awakes this instance.
@@ -43,6 +90,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        fruits = FindObjectOfType<Fruits>();
     }
 
     private void Start()
@@ -50,6 +98,7 @@ public class GameManager : MonoBehaviour
         timeText.text = " TIME " + time.ToString("f0");
         StartCoroutine(IEGameStart());
     }
+
     private void Update()
     {
         if (inGame)
@@ -59,16 +108,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Ies the game start.
-    /// Inicia el nivel
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator IEGameStart()
-    {
-        yield return new WaitForSeconds(General.Tiempos["cuentaAtras"]);
-        ready.SetActive(false);
-        BallManager.bm.StartGame();
-        inGame = true;
-    }
+    #endregion Private Methods
 }

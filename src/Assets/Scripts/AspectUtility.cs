@@ -2,26 +2,87 @@
 
 public class AspectUtility : MonoBehaviour
 {
-    public float _wantedAspectRatio = 1.77778f;
-    private static float wantedAspectRatio;
-    private static Camera cam;
-    private static Camera backgroundCam;
+    #region Public Fields
 
-    private void Awake()
+    public float _wantedAspectRatio = 1.77778f;
+
+    #endregion Public Fields
+
+    #region Private Fields
+
+    private static Camera backgroundCam;
+    private static Camera cam;
+    private static float wantedAspectRatio;
+
+    #endregion Private Fields
+
+    #region Public Properties
+
+    public static Vector2 GuiMousePosition
     {
-        cam = GetComponent<Camera>();
-        if (!cam)
+        get
         {
-            cam = Camera.main;
+            Vector2 mousePos = Event.current.mousePosition;
+            mousePos.y = Mathf.Clamp(mousePos.y, cam.rect.y * Screen.height, cam.rect.y * Screen.height + cam.rect.height * Screen.height);
+            mousePos.x = Mathf.Clamp(mousePos.x, cam.rect.x * Screen.width, cam.rect.x * Screen.width + cam.rect.width * Screen.width);
+            return mousePos;
         }
-        if (!cam)
-        {
-            Debug.LogError("No camera available");
-            return;
-        }
-        wantedAspectRatio = _wantedAspectRatio;
-        SetCamera();
     }
+
+    public static Vector3 MousePosition
+    {
+        get
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.y -= (int)(cam.rect.y * Screen.height);
+            mousePos.x -= (int)(cam.rect.x * Screen.width);
+            return mousePos;
+        }
+    }
+
+    public static int ScreenHeight
+    {
+        get
+        {
+            return (int)(Screen.height * cam.rect.height);
+        }
+    }
+
+    public static Rect ScreenRect
+    {
+        get
+        {
+            return new Rect(cam.rect.x * Screen.width, cam.rect.y * Screen.height, cam.rect.width * Screen.width, cam.rect.height * Screen.height);
+        }
+    }
+
+    public static int ScreenWidth
+    {
+        get
+        {
+            return (int)(Screen.width * cam.rect.width);
+        }
+    }
+
+    public static int XOffset
+    {
+        get
+        {
+            return (int)(Screen.width * cam.rect.x);
+        }
+    }
+
+    public static int YOffset
+    {
+        get
+        {
+            return (int)(Screen.height * cam.rect.y);
+        }
+    }
+
+    #endregion Public Properties
+
+    #region Public Methods
 
     public static void SetCamera()
     {
@@ -60,65 +121,25 @@ public class AspectUtility : MonoBehaviour
         }
     }
 
-    public static int ScreenHeight
+    #endregion Public Methods
+
+    #region Private Methods
+
+    private void Awake()
     {
-        get
+        cam = GetComponent<Camera>();
+        if (!cam)
         {
-            return (int)(Screen.height * cam.rect.height);
+            cam = Camera.main;
         }
+        if (!cam)
+        {
+            Debug.LogError("No camera available");
+            return;
+        }
+        wantedAspectRatio = _wantedAspectRatio;
+        SetCamera();
     }
 
-    public static int ScreenWidth
-    {
-        get
-        {
-            return (int)(Screen.width * cam.rect.width);
-        }
-    }
-
-    public static int XOffset
-    {
-        get
-        {
-            return (int)(Screen.width * cam.rect.x);
-        }
-    }
-
-    public static int YOffset
-    {
-        get
-        {
-            return (int)(Screen.height * cam.rect.y);
-        }
-    }
-
-    public static Rect ScreenRect
-    {
-        get
-        {
-            return new Rect(cam.rect.x * Screen.width, cam.rect.y * Screen.height, cam.rect.width * Screen.width, cam.rect.height * Screen.height);
-        }
-    }
-
-    public static Vector3 MousePosition
-    {
-        get
-        {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.y -= (int)(cam.rect.y * Screen.height);
-            mousePos.x -= (int)(cam.rect.x * Screen.width);
-            return mousePos;
-        }
-    }
-
-    public static Vector2 GuiMousePosition
-    {
-        get
-        {
-            Vector2 mousePos = Event.current.mousePosition;
-            mousePos.y = Mathf.Clamp(mousePos.y, cam.rect.y * Screen.height, cam.rect.y * Screen.height + cam.rect.height * Screen.height);
-            mousePos.x = Mathf.Clamp(mousePos.x, cam.rect.x * Screen.width, cam.rect.x * Screen.width + cam.rect.width * Screen.width);
-            return mousePos;
-        }
-    }
+    #endregion Private Methods
 }

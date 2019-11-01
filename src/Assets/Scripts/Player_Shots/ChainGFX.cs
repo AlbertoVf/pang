@@ -5,10 +5,16 @@
 /// </summary>
 public class ChainGFX : MonoBehaviour
 {
+    #region Private Fields
+
     /// <summary>
     /// The start position.
     /// </summary>
     private Vector2 startPos;
+
+    #endregion Private Fields
+
+    #region Private Methods
 
     /// <summary>
     /// Starts this instance.
@@ -27,4 +33,6 @@ public class ChainGFX : MonoBehaviour
     {
         transform.position = startPos;
     }
+
+    #endregion Private Methods
 }

@@ -8,15 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class SelectMode : MonoBehaviour
 {
-    /// <summary>
-    /// The tour mode image
-    /// </summary>
-    public Image tourModeImage;
-
-    /// <summary>
-    /// The tour mode text
-    /// </summary>
-    public Text tourModeText;
+    #region Public Fields
 
     /// <summary>
     /// The panic mode image.
@@ -29,10 +21,28 @@ public class SelectMode : MonoBehaviour
     public Text panicModeText;
 
     /// <summary>
+    /// The tour mode image
+    /// </summary>
+    public Image tourModeImage;
+
+    /// <summary>
+    /// The tour mode text
+    /// </summary>
+    public Text tourModeText;
+
+    #endregion Public Fields
+
+    #region Private Fields
+
+    /// <summary>
     /// The tour.
     /// Indica si esta seleccionado el modo Tour
     /// </summary>
     private bool tour;
+
+    #endregion Private Fields
+
+    #region Private Methods
 
     private void Start()
     {
@@ -74,4 +84,6 @@ public class SelectMode : MonoBehaviour
             General.CargarEscena("PanicMode");
         }
     }
+
+    #endregion Private Methods
 }

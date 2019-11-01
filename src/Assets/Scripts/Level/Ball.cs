@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Ball : MonoBehaviour
 {
+    #region Public Fields
+
     /// <summary>
     /// The next ball.
     /// Proxima bola que se generara al explotar
@@ -14,16 +16,20 @@ public class Ball : MonoBehaviour
     public GameObject nextBall;
 
     /// <summary>
-    /// The rb.
-    /// Dibuja la vola
+    /// The power up.
+    /// Item que se generara al explotar la bola
     /// </summary>
-    private Rigidbody2D rb;
+    public GameObject powerUp;
 
     /// <summary>
     /// The right.
     /// Establece si se movera a izquierda o derecha
     /// </summary>
     public bool right;
+
+    #endregion Public Fields
+
+    #region Private Fields
 
     /// <summary>
     /// The current velocity.
@@ -32,15 +38,14 @@ public class Ball : MonoBehaviour
     private Vector2 currentVelocity;
 
     /// <summary>
-    /// The power up.
-    /// Item que se generara al explotar la bola
+    /// The rb.
+    /// Dibuja la vola
     /// </summary>
-    public GameObject powerUp;
+    private Rigidbody2D rb;
 
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    #endregion Private Fields
+
+    #region Public Methods
 
     /// <summary>
     /// Freezes the ball.
@@ -57,19 +62,6 @@ public class Ball : MonoBehaviour
                 item.GetComponent<Rigidbody2D>().isKinematic = true;
                 item.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
-        }
-    }
-
-    /// <summary>
-    /// Instantiantes the price.
-    /// Genera el item de premio en la explosion de la bola
-    /// </summary>
-    private void InstantiantePrice()
-    {
-        int aleatory = BallManager.bm.AleatoryNumber();
-        if (aleatory == 1)
-        {
-            Instantiate(powerUp, transform.position, Quaternion.identity);
         }
     }
 
@@ -139,6 +131,7 @@ public class Ball : MonoBehaviour
         int score = General.Interfaz["bola"];
         PopUpManager.pm.InstanciatePopUpText(gameObject.transform.position, score);
         ScoreManager.sm.UpdateScore(score);
+        GameManager.gm.UpdateBallDestroyed();
     }
 
     /// <summary>
@@ -175,4 +168,28 @@ public class Ball : MonoBehaviour
             }
         }
     }
+
+    #endregion Public Methods
+
+    #region Private Methods
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    /// <summary>
+    /// Instantiantes the price.
+    /// Genera el item de premio en la explosion de la bola
+    /// </summary>
+    private void InstantiantePrice()
+    {
+        int aleatory = BallManager.bm.AleatoryNumber();
+        if (aleatory == 1)
+        {
+            Instantiate(powerUp, transform.position, Quaternion.identity);
+        }
+    }
+
+    #endregion Private Methods
 }

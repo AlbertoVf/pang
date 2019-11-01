@@ -10,11 +10,17 @@ using UnityEngine;
 /// </summary>
 public class ShotAncle : MonoBehaviour
 {
+    #region Public Fields
+
     /// <summary>
     /// The chain GFX
     /// Diseño de la cadena
     /// </summary>
     public GameObject chainGFX;
+
+    #endregion Public Fields
+
+    #region Private Fields
 
     /// <summary>
     /// The chains
@@ -33,6 +39,10 @@ public class ShotAncle : MonoBehaviour
     /// </summary>
     private Vector2 startPos;
 
+    #endregion Private Fields
+
+    #region Private Methods
+
     /// <summary>
     /// Modifica el grafico de la cadena añadiendo los eslabones superpuestos al blanco
     /// </summary>
@@ -41,6 +51,25 @@ public class ShotAncle : MonoBehaviour
         GameObject chain = Instantiate(chainGFX, transform.position - new Vector3(0, 0.2f, 0), Quaternion.identity);
         chain.transform.parent = transform;
         chains.Add(chain);
+    }
+
+    /// <summary>
+    /// Corrutina que dispara el ancla y al colisionar con el techo cambia de color y desaparece en un tiempo determinado
+    /// </summary>
+    /// <returns>Desaparicion de ancla tras un tiempo determinado</returns>
+    private IEnumerator IEDestroyAncle()
+    {
+        Color color = Color.red;
+        speed = General.Velocidades["nulo"];
+        yield return new WaitForSeconds(General.Velocidades["desaparicion"]);
+        GetComponentInParent<SpriteRenderer>().color = color;
+        foreach (GameObject item in chains)
+        {
+            item.GetComponent<SpriteRenderer>().color = color;
+        }
+        yield return new WaitForSeconds(General.Velocidades["desaparicion"]);
+        Destroy(gameObject);
+        ShotManager.shm.DestroyShot();
     }
 
     /// <summary>
@@ -82,22 +111,5 @@ public class ShotAncle : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Corrutina que dispara el ancla y al colisionar con el techo cambia de color y desaparece en un tiempo determinado
-    /// </summary>
-    /// <returns>Desaparicion de ancla tras un tiempo determinado</returns>
-    private IEnumerator IEDestroyAncle()
-    {
-        Color color = Color.red;
-        speed = General.Velocidades["nulo"];
-        yield return new WaitForSeconds(General.Velocidades["desaparicion"]);
-        GetComponentInParent<SpriteRenderer>().color = color;
-        foreach (GameObject item in chains)
-        {
-            item.GetComponent<SpriteRenderer>().color = color;
-        }
-        yield return new WaitForSeconds(General.Velocidades["desaparicion"]);
-        Destroy(gameObject);
-        ShotManager.shm.DestroyShot();
-    }
+    #endregion Private Methods
 }
