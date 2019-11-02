@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
     {
         timeText.text = " TIME " + time.ToString("f0");
         StartCoroutine(IEGameStart());
+        ScoreManager.sm.UpdateHightScore();
     }
 
     private void Update()

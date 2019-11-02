@@ -36,7 +36,7 @@ public class PanelPoints : MonoBehaviour
         {
             balls--;
             SetTotalScore(General.Interfaz["cuentaBola"]);
-            TextBalls();
+            SetTextBalls();
             ScoreManager.sm.UpdateScore(General.Interfaz["cuentaBola"]);
             yield return new WaitForSeconds(tiempoEspera);
         }
@@ -44,7 +44,7 @@ public class PanelPoints : MonoBehaviour
         {
             fruits--;
             SetTotalScore(General.Interfaz["cuentaFruit"]);
-            TextFruits();
+            SetTextFruits();
             ScoreManager.sm.UpdateScore(General.Interfaz["cuentaFruit"]);
             yield return new WaitForSeconds(tiempoEspera);
         }
@@ -52,13 +52,12 @@ public class PanelPoints : MonoBehaviour
         {
             time--;
             SetTotalScore(General.Interfaz["cuentaTiempo"]);
-            TextTime();
+            SetTextTime();
             ScoreManager.sm.UpdateScore(General.Interfaz["cuentaTiempo"]);
             yield return new WaitForSeconds(tiempoEspera);
         }
 
         yield return new WaitForSeconds(tiempoEspera * 2);
-        //Carga de nivel
         if (SceneManager.sceneCountInBuildSettings > SceneManager.GetActiveScene().buildIndex + 1)
         {
             GameManager.gm.NextLevel();
@@ -72,37 +71,37 @@ public class PanelPoints : MonoBehaviour
     private void OnEnable()
     {
         balls = GameManager.gm.ballsDestroyed;
-        TextBalls();
+        SetTextBalls();
 
         fruits = GameManager.gm.fruitsCatched;
-        TextFruits();
+        SetTextFruits();
 
         time = (int)GameManager.gm.time + 1;
-        TextTime();
+        SetTextTime();
 
         SetTotalScore(ScoreManager.sm.currentScore);
         StartCoroutine(IETotalScoreAmount());
+    }
+
+    private void SetTextBalls()
+    {
+        ballsDestroyed.text = "X " + balls.ToString();
+    }
+
+    private void SetTextFruits()
+    {
+        totalFruits.text = "X " + fruits.ToString();
+    }
+
+    private void SetTextTime()
+    {
+        totalTime.text = time.ToString() + " s";
     }
 
     private void SetTotalScore(int score)
     {
         totalScore += score;
         totalScoreCount.text = totalScore.ToString();
-    }
-
-    private void TextBalls()
-    {
-        ballsDestroyed.text = "X " + balls.ToString();
-    }
-
-    private void TextFruits()
-    {
-        totalFruits.text = "X " + fruits.ToString();
-    }
-
-    private void TextTime()
-    {
-        totalTime.text = time.ToString() + " s";
     }
 
     #endregion Private Methods

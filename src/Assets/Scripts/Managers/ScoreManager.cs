@@ -9,16 +9,31 @@ public class ScoreManager : MonoBehaviour
 
     public static ScoreManager sm;
     public int currentScore = General.Interfaz["inicial"];
+    public int hightScore = 0;
+    public Text hightScoreText;
     public Text scoreText;
 
     #endregion Public Fields
 
     #region Public Methods
 
+    public void UpdateHightScore()
+    {
+        hightScore = PlayerPrefs.GetInt("HightScore");
+        SetTextHightScore();
+    }
+
     public void UpdateScore(int score)
     {
         currentScore += score;
         scoreText.text = currentScore.ToString();
+
+        if (currentScore > hightScore)
+        {
+            hightScore = currentScore;
+            SetTextHightScore();
+            PlayerPrefs.SetInt("HightScore", hightScore);
+        }
     }
 
     #endregion Public Methods
@@ -37,11 +52,15 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    private void SetTextHightScore()
+    {
+        hightScoreText.text = "HI: " + hightScore.ToString();
+    }
+
     private void Start()
     {
         currentScore = General.Interfaz["inicial"];
         scoreText.text = currentScore.ToString();
-        // UpdateScore();
     }
 
     #endregion Private Methods
