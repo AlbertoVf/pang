@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     #region Private Fields
 
     private Fruits fruits;
+    private LifeManager lm;
 
     #endregion Private Fields
 
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        lm.RestartLifesDoll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -91,6 +93,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         fruits = FindObjectOfType<Fruits>();
+        lm = FindObjectOfType<LifeManager>();
     }
 
     private void Start()

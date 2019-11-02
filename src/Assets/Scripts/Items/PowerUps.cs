@@ -31,6 +31,8 @@ public class PowerUps : MonoBehaviour
     /// </summary>
     private bool inGround;
 
+    private LifeManager lm;
+
     /// <summary>
     /// The sr.
     /// Dibuja los items
@@ -44,6 +46,7 @@ public class PowerUps : MonoBehaviour
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        lm = FindObjectOfType<LifeManager>();
     }
 
     /// <summary>
@@ -80,6 +83,10 @@ public class PowerUps : MonoBehaviour
             else if (gameObject.name.Equals("TimeSlow"))
             {
                 BallManager.bm.SlowTime();
+            }
+            else if (gameObject.name.Equals("Life"))
+            {
+                lm.AmountLifes();
             }
             Destroy(gameObject);
         }

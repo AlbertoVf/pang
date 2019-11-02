@@ -21,6 +21,12 @@ public class LifeManager : MonoBehaviour
 
     #region Public Methods
 
+    public void AmountLifes()
+    {
+        lifes++;
+        SetLifesText();
+    }
+
     public void LifeLose()
     {
         animator.SetBool("win", false);
@@ -33,17 +39,21 @@ public class LifeManager : MonoBehaviour
         animator.SetBool("win", true);
     }
 
-    public void UpdateLifes(int life)
+    public void RestartLifesDoll()
     {
-        if (life > 0)
-        {
-            lifes += life;
-        }
-        else
-        {
-            lifes -= life;
-        }
+        animator.SetBool("win", false);
+        animator.SetBool("lose", false);
+    }
+
+    public void SetLifesText()
+    {
         lifesText.text = "X " + lifes.ToString();
+    }
+
+    public void SubstractLifes()
+    {
+        lifes--;
+        SetLifesText();
     }
 
     #endregion Public Methods

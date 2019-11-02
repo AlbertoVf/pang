@@ -256,8 +256,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reloads the level.
+    /// Recarga la escena y reestablece el muñeco de las vidas.
+    /// Es una invocacion, no una llamada.
+    /// </summary>
     private void ReloadLevel()
     {
+        lm.SubstractLifes();
+        lm.RestartLifesDoll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
