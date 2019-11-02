@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 21300000
     second: borde_0
+  - first:
+      213: 7328425606830956589
+    second: borde_1
+  - first:
+      213: -5043430881898964766
+    second: borde_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -113,21 +119,63 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: borde_0
+      name: borde_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 0
-        width: 412
-        height: 64
+        width: 64
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 8, y: 8, z: 8, w: 8}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd70ce24821ce9e46bc3496386507c9d
+      spriteID: e0c695337f53f384b9028b11e564fbf2
+      internalID: 7328425606830956589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: borde_3
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 57
+        width: 64
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 026b44e70782ad94a8782eb6909c76dd
+      internalID: -5043430881898964766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: borde_0
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 9
+        width: 8
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ccb8079690ad984b86e08b8b81d4cd8
       internalID: 21300000
       vertices: []
       indices: 
