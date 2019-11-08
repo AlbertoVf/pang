@@ -112,6 +112,28 @@ namespace Assets.Scripts
         #region Public Methods
 
         /// <summary>
+        /// Genera un numero aleatorio entre dos valores, ambos incluidos
+        /// </summary>
+        /// <param name="min">Valor minimo</param>
+        /// <param name="max">Valor maximo</param>
+        /// <returns>Numero</returns>
+        public static int Aleatorio(int min, int max)
+        {
+            // System.Random r = new System.Random();
+            // int a = r.Next(min, max+1);
+            // return a;
+
+            var guid = Guid.NewGuid();
+            var justNumbers = new string(guid.ToString().Where(char.IsDigit).ToArray());
+            var seed = int.Parse(justNumbers.Substring(0, 4));
+
+            var random = new System.Random(seed);
+            var value = random.Next(min, max + 1);
+
+            return value;
+        }
+
+        /// <summary>
         /// Carga una escena al presionar la tecla enter.
         /// </summary>
         /// <param name="escena">Nombre de la escena</param>
@@ -136,31 +158,5 @@ namespace Assets.Scripts
         }
 
         #endregion Public Methods
-
-        #region Private Methods
-
-        /// <summary>
-        /// Genera un numero aleatorio entre dos valores, ambos incluidos
-        /// </summary>
-        /// <param name="min">Valor minimo</param>
-        /// <param name="max">Valor maximo</param>
-        /// <returns>Numero</returns>
-        private static int Aleatorio(int min, int max)
-        {
-            // System.Random r = new System.Random();
-            // int a = r.Next(min, max+1);
-            // return a;
-
-            var guid = Guid.NewGuid();
-            var justNumbers = new string(guid.ToString().Where(char.IsDigit).ToArray());
-            var seed = int.Parse(justNumbers.Substring(0, 4));
-
-            var random = new System.Random(seed);
-            var value = random.Next(min, max + 1);
-
-            return value;
-        }
-
-        #endregion Private Methods
     }
 }
