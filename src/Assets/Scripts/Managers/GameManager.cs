@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public int ballsDestroyed = 0;
     public int fruitsCatched = 0;
 
+    public GameObject gameOver;
+
     /// <summary>
     /// Texto de inicio de nivel
     /// </summary>

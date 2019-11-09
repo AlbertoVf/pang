@@ -181,7 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8375541343735767269}
   m_Layer: 12
-  m_Name: Plataforma Horizontal
+  m_Name: Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,7 +232,7 @@ Transform:
   m_GameObject: {fileID: 6589912621495335034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.74517876, y: 0.60257757, z: 1}
   m_Children: []
   m_Father: {fileID: 8375541343735767269}
   m_RootOrder: 4
@@ -275,13 +275,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7328425606830956589, guid: 8cb84c289e967ca47972454f9fce1016,
+  m_Sprite: {fileID: 7328425606830956589, guid: 735295067a5784b4a83f3644869940ab,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 0.25}
+  m_Size: {x: 2.69, y: 0.39}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

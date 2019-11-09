@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballsDestroyed: 0
   fruitsCatched: 0
+  gameOver: {fileID: 0}
   ready: {fileID: 0}
   time: 100
   timeText: {fileID: 0}

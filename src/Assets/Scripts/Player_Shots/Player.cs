@@ -187,6 +187,10 @@ public class Player : MonoBehaviour
 
     private void OnBecameInvisible()
     {
+        if (lm.lifes <= 0)
+        {
+            General.CargarEscena(0); ;// AJUSTAR PARA QUE EL DISEÑO DE LAS VIDAS QUEDE EN 0
+        }
         Invoke("ReloadLevel", General.Tiempos["cuentaAtras"]);
     }
 
