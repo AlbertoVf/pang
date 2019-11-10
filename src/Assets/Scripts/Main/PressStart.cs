@@ -42,6 +42,15 @@ public class PressStart : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        GameObject destroyOnLoad = FindObjectOfType<Estatico>().gameObject;
+        if (destroyOnLoad != null)
+        {
+            Destroy(destroyOnLoad);
+        }
+    }
+
     /// <summary>
     /// Updates this instance.
     /// Carga la escena de modo de juego.
@@ -49,7 +58,7 @@ public class PressStart : MonoBehaviour
     private void Update()
     {
         ParpadeoTexto(pressStart);
-        General.CargarEscena(1);
+        General.g.CargarEscena(1);
     }
 
     #endregion Private Methods

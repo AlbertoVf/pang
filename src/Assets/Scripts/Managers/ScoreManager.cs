@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     #region Public Fields
 
     public static ScoreManager sm;
-    public int currentScore = General.Interfaz["inicial"];
+    public int currentScore = Puntuacion.INICIAL;
     public int hightScore = 0;
     public Text hightScoreText;
     public Text scoreText;
@@ -59,7 +59,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        currentScore = General.Interfaz["inicial"];
+        currentScore = Puntuacion.INICIAL;
         scoreText.text = currentScore.ToString();
     }
 

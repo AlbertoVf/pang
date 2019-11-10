@@ -50,11 +50,11 @@ public class FruitItem : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             inGround = true;
-            Destroy(gameObject, General.Tiempos["item"]);
+            Destroy(gameObject, Tiempo.ITEMSUELO);
         }
         else if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Arrow" || collision.gameObject.tag == "Ancle")
         {
-            int score = General.Interfaz["fruit"];
+            int score = Puntuacion.FRUIT;
             ScoreManager.sm.UpdateScore(score);
             PopUpManager.pm.InstanciatePopUpText(transform.position, score);
             GameManager.gm.fruitsCatched++;
@@ -76,7 +76,7 @@ public class FruitItem : MonoBehaviour
     {
         if (!inGround)
         {
-            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["normal"];
+            transform.position += Vector3.down * Time.deltaTime * Velocidad.NORMAL;
         }
     }
 

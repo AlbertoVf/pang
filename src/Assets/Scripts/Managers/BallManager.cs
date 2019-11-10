@@ -101,7 +101,7 @@ public class BallManager : MonoBehaviour
                 item.GetComponent<Ball>().Split();
                 Destroy(item);
             }
-            yield return new WaitForSeconds(General.Tiempos["parpadeo"]);
+            yield return new WaitForSeconds(Tiempo.PARPADEO);
             ReloadList();
             numberToFind++;
         }
@@ -123,7 +123,7 @@ public class BallManager : MonoBehaviour
                 item.GetComponent<Ball>().SlowBall();
             }
         }
-        while (time < General.Tiempos["cuentaAtras"])
+        while (time < Tiempo.CUENTAATRAS)
         {
             time += Time.deltaTime;
             yield return null;

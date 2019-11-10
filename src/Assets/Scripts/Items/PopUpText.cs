@@ -26,7 +26,7 @@ public class PopUpText : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.up * Time.deltaTime * General.Tiempos["texto"]);
+        transform.Translate(Vector3.up * Time.deltaTime * Tiempo.TEXTO);
         if (transform.position.y > starPos.y + 2)
         {
             Destroy(gameObject);

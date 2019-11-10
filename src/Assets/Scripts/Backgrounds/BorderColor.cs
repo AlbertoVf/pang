@@ -37,7 +37,7 @@ public class BorderColor : MonoBehaviour
             {
                 borderColor.color = normalColor;
             }
-            yield return new WaitForSeconds(General.Tiempos["parpadeo"] * 1.5f);
+            yield return new WaitForSeconds(TiempoEspera.NORMAL);
         }
     }
 

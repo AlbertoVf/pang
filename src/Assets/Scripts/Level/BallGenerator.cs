@@ -26,7 +26,7 @@ public class BallGenerator : MonoBehaviour
     {
         if (!FreezeManager.fm.freeze)
         {
-            ball = Instantiate(ballsPrefab[Random.Range(0, ballsPrefab.Length)], new Vector2(General.Aleatorio(-7, 7), transform.position.y), Quaternion.identity);
+            ball = Instantiate(ballsPrefab[Random.Range(0, ballsPrefab.Length)], new Vector2(Random.Range(-7, 7), transform.position.y), Quaternion.identity);
             BallManager.bm.balls.Add(ball);
             StartCoroutine(IEMoveDown());
         }
@@ -50,11 +50,11 @@ public class BallGenerator : MonoBehaviour
 
     private IEnumerator IEMoveDown()
     {
-        yield return new WaitForSeconds(General.Tiempos["texto"]);
+        yield return new WaitForSeconds(Tiempo.TEXTO);
         while (!free)
         {
             ball.transform.position = new Vector2(ball.transform.position.x, ball.transform.position.y - 0.5f);
-            yield return new WaitForSeconds(General.Tiempos["texto"]);
+            yield return new WaitForSeconds(Tiempo.TEXTO);
         }
     }
 

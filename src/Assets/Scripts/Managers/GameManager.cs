@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public GameObject ready;
 
-    public float time = General.Tiempos["partida"];
+    public float time = Tiempo.PARTIDA;
     public Text timeText;
 
     #endregion Public Fields
@@ -48,6 +48,13 @@ public class GameManager : MonoBehaviour
 
     #region Public Methods
 
+    public IEnumerator IEGameOver()
+    {
+        gameOver.SetActive(true);
+        yield return new WaitForSeconds(Tiempo.CUENTAATRAS);
+        General.g.CargarEscena(0);
+    }
+
     /// <summary>
     /// Ies the game start.
     /// Inicia el nivel
@@ -55,7 +62,7 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator IEGameStart()
     {
-        yield return new WaitForSeconds(General.Tiempos["cuentaAtras"]);
+        yield return new WaitForSeconds(Tiempo.CUENTAATRAS);
         ready.SetActive(false);
         BallManager.bm.StartGame();
         inGame = true;
@@ -65,6 +72,11 @@ public class GameManager : MonoBehaviour
     {
         lm.RestartLifesDoll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void StartGameOver()
+    {
+        StartCoroutine(IEGameOver());
     }
 
     public void UpdateBallDestroyed()
@@ -102,6 +114,7 @@ public class GameManager : MonoBehaviour
     {
         timeText.text = " TIME " + time.ToString("f0");
         StartCoroutine(IEGameStart());
+        gameOver.SetActive(false);
         ScoreManager.sm.UpdateHightScore();
     }
 

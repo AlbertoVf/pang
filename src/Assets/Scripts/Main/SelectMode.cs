@@ -63,11 +63,11 @@ public class SelectMode : MonoBehaviour
             panicModeImage.color = new Color(1, 1, 0, 0.5f);
             panicModeText.color = new Color(1, 1, 1, 0.5f);
 
-            if (Input.GetKeyDown(General.Teclas["izquierda"]))
+            if (Input.GetKeyDown(Tecla.IZQUIERDA))
             {
                 tour = false;
             }
-            General.CargarEscena("TourMode_01");
+            General.g.CargarEscena("TourMode_01");
         }
         else
         {
@@ -77,11 +77,11 @@ public class SelectMode : MonoBehaviour
             tourModeImage.color = new Color(1, 1, 0, 0.5f);
             tourModeText.color = new Color(1, 1, 1, 0.5f);
 
-            if (Input.GetKeyDown(General.Teclas["derecha"]))
+            if (Input.GetKeyDown(Tecla.DERECHA))
             {
                 tour = true;
             }
-            General.CargarEscena("PanicMode");
+            General.g.CargarEscena("PanicMode");
         }
     }
 

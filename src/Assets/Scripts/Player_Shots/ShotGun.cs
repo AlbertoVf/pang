@@ -13,7 +13,7 @@ public class ShotGun : MonoBehaviour
     /// The speed.
     /// Velocidad de los disparos
     /// </summary>
-    private readonly float speed = General.Velocidades["rapido"];
+    private readonly float speed = Velocidad.RAPIDO;
 
     #endregion Private Fields
 

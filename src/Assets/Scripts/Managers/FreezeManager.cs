@@ -90,7 +90,7 @@ public class FreezeManager : MonoBehaviour
     /// </summary>
     public void StartFreeze()
     {
-        freezeTime = General.Tiempos["cuentaAtras"];
+        freezeTime = Tiempo.CUENTAATRAS;
         if (!freeze)
         {
             StartCoroutine(IEFreezeTime());

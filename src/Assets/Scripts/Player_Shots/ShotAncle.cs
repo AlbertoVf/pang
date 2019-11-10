@@ -32,7 +32,7 @@ public class ShotAncle : MonoBehaviour
     /// The speed
     /// Velocidad del ancla
     /// </summary>
-    private float speed = General.Velocidades["normal"];
+    private float speed = Velocidad.NORMAL;
 
     /// <summary>
     /// The start position
@@ -60,14 +60,14 @@ public class ShotAncle : MonoBehaviour
     private IEnumerator IEDestroyAncle()
     {
         Color color = Color.red;
-        speed = General.Velocidades["nulo"];
-        yield return new WaitForSeconds(General.Velocidades["desaparicion"]);
+        speed = Velocidad.NULO;
+        yield return new WaitForSeconds(TiempoEspera.ANCLA);
         GetComponentInParent<SpriteRenderer>().color = color;
         foreach (GameObject item in chains)
         {
             item.GetComponent<SpriteRenderer>().color = color;
         }
-        yield return new WaitForSeconds(General.Velocidades["desaparicion"]);
+        yield return new WaitForSeconds(TiempoEspera.ANCLA);
         Destroy(gameObject);
         ShotManager.shm.DestroyShot();
     }

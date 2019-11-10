@@ -28,7 +28,7 @@ public class Shield : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             inGround = true;
-            Destroy(gameObject, General.Tiempos["item"]);
+            Destroy(gameObject, Tiempo.ITEMSUELO);
         }
         if (collision.gameObject.tag == "Player")
         {
@@ -42,7 +42,7 @@ public class Shield : MonoBehaviour
     {
         if (!inGround)
         {
-            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
+            transform.position += Vector3.down * Time.deltaTime * Velocidad.LENTO;
         }
     }
 

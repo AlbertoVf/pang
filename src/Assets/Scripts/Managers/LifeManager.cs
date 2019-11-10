@@ -8,7 +8,7 @@ public class LifeManager : MonoBehaviour
     #region Public Fields
 
     public GameObject lifeDoll;
-    public int lifes = General.Interfaz["vida"];
+    public int lifes = Puntuacion.VIDA;
     public Text lifesText;
 
     #endregion Public Fields

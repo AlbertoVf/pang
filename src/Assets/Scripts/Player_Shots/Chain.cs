@@ -17,7 +17,7 @@ public class Chain : MonoBehaviour
     {
         if (transform.localScale.y < 7f)
         {
-            transform.localScale += Vector3.up * Time.deltaTime * General.Velocidades["normal"];
+            transform.localScale += Vector3.up * Time.deltaTime * Velocidad.NORMAL;
         }
     }
 

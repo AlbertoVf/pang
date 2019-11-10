@@ -23,7 +23,7 @@ public class ShotArrow : MonoBehaviour
     /// The speed
     /// Velocidad del disparo
     /// </summary>
-    private float speed = General.Velocidades["normal"];
+    private float speed = Velocidad.NORMAL;
 
     /// <summary>
     /// The start position

@@ -31,29 +31,29 @@ public class PanelPoints : MonoBehaviour
 
     public IEnumerator IETotalScoreAmount()
     {
-        float tiempoEspera = General.Tiempos["parpadeo"] / 2;
+        float tiempoEspera = TiempoEspera.RAPIDA;
         while (balls > 0)
         {
             balls--;
-            SetTotalScore(General.Interfaz["cuentaBola"]);
+            SetTotalScore(PuntuacionRecuento.BOLA);
             SetTextBalls();
-            ScoreManager.sm.UpdateScore(General.Interfaz["cuentaBola"]);
+            ScoreManager.sm.UpdateScore(PuntuacionRecuento.BOLA);
             yield return new WaitForSeconds(tiempoEspera);
         }
         while (fruits > 0)
         {
             fruits--;
-            SetTotalScore(General.Interfaz["cuentaFruit"]);
+            SetTotalScore(PuntuacionRecuento.FRUIT);
             SetTextFruits();
-            ScoreManager.sm.UpdateScore(General.Interfaz["cuentaFruit"]);
+            ScoreManager.sm.UpdateScore(PuntuacionRecuento.FRUIT);
             yield return new WaitForSeconds(tiempoEspera);
         }
         while (time > 0)
         {
             time--;
-            SetTotalScore(General.Interfaz["cuentaTiempo"]);
+            SetTotalScore(PuntuacionRecuento.TIEMPO);
             SetTextTime();
-            ScoreManager.sm.UpdateScore(General.Interfaz["cuentaTiempo"]);
+            ScoreManager.sm.UpdateScore(PuntuacionRecuento.TIEMPO);
             yield return new WaitForSeconds(tiempoEspera);
         }
 

@@ -71,15 +71,15 @@ public class Ball : MonoBehaviour
     /// </summary>
     public void NormalSpeedBall()
     {
-        if (rb.velocity.x < General.Velocidades["nulo"])
+        if (rb.velocity.x < Velocidad.NULO)
         {
-            rb.velocity = new Vector2((-1f) * General.Velocidades["normal"], rb.velocity.y);
+            rb.velocity = new Vector2((-1f) * Velocidad.NORMAL, rb.velocity.y);
         }
         else
         {
-            rb.velocity = new Vector2(General.Velocidades["normal"], rb.velocity.y);
+            rb.velocity = new Vector2(Velocidad.NORMAL, rb.velocity.y);
         }
-        rb.gravityScale = General.EscalasGravedad["normal"];
+        rb.gravityScale = Gravedad.NORMAL;
     }
 
     /// <summary>
@@ -88,8 +88,8 @@ public class Ball : MonoBehaviour
     /// </summary>
     public void SlowBall()
     {
-        rb.velocity /= General.Velocidades["muyLento"];
-        rb.gravityScale = General.EscalasGravedad["baja"];
+        rb.velocity /= Velocidad.MUYLENTO;
+        rb.gravityScale = Gravedad.BAJA;
     }
 
     /// <summary>
@@ -128,7 +128,7 @@ public class Ball : MonoBehaviour
         {
             BallManager.bm.LastBall(gameObject);
         }
-        int score = General.Interfaz["bola"];
+        int score = Puntuacion.BOLA;
         PopUpManager.pm.InstanciatePopUpText(gameObject.transform.position, score);
         ScoreManager.sm.UpdateScore(score);
         GameManager.gm.UpdateBallDestroyed();

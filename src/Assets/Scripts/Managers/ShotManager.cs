@@ -89,7 +89,7 @@ public class ShotManager : MonoBehaviour
             typeOfShot = type;
             numberOfShots = 0;
 
-            int score = General.Interfaz["item"];
+            int score = Puntuacion.ITEM;
             ScoreManager.sm.UpdateScore(score);
             PopUpManager.pm.InstanciatePopUpText(transform.position, score);
         }
@@ -176,7 +176,7 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (CanShot() && Input.GetKeyDown(General.Teclas["disparar"]))
+        if (CanShot() && Input.GetKeyDown(Tecla.DISPARAR) && GameManager.inGame)
         {
             Shot();
         }

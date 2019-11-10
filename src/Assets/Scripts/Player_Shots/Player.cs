@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// The movement
     /// </summary>
-    private float movement = General.Velocidades["nulo"];
+    private float movement = Velocidad.NULO;
 
     /// <summary>
     /// The rb
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// The speed
     /// </summary>
-    private float speed = General.Velocidades["normal"];
+    private float speed = Velocidad.NORMAL;
 
     /// <summary>
     /// The sr
@@ -110,24 +110,24 @@ public class Player : MonoBehaviour
         {
             if (leftWall)
             {
-                if (Input.GetKey(General.Teclas["izquierda"]))
+                if (Input.GetKey(Tecla.IZQUIERDA))
                 {
-                    speed = General.Velocidades["nulo"];
+                    speed = Velocidad.NULO;
                 }
-                else if (Input.GetKey(General.Teclas["derecha"]) || Input.GetKeyUp(General.Teclas["izquierda"]))
+                else if (Input.GetKey(Tecla.DERECHA) || Input.GetKeyUp(Tecla.IZQUIERDA))
                 {
-                    speed = General.Velocidades["normal"];
+                    speed = Velocidad.NORMAL;
                 }
             }
             if (rightWall)
             {
-                if (Input.GetKey(General.Teclas["izquierda"]) || Input.GetKeyUp(General.Teclas["derecha"]))
+                if (Input.GetKey(Tecla.IZQUIERDA) || Input.GetKeyUp(Tecla.DERECHA))
                 {
-                    speed = General.Velocidades["normal"];
+                    speed = Velocidad.NORMAL;
                 }
-                else if (Input.GetKey(General.Teclas["derecha"]))
+                else if (Input.GetKey(Tecla.DERECHA))
                 {
-                    speed = General.Velocidades["nulo"];
+                    speed = Velocidad.NULO;
                 }
             }
             rb.MovePosition(rb.position + Vector2.right * movement * Time.fixedDeltaTime);
@@ -142,14 +142,14 @@ public class Player : MonoBehaviour
     private IEnumerator IEBlinking()
     {
         blink = true;
-        for (int i = 0; i < General.Tiempos["cuentaAtras"]; i++)
+        for (int i = 0; i < Tiempo.CUENTAATRAS; i++)
         {
             if (blink && GameManager.inGame)
             {
                 sr.color = new Color(1, 1, 1, 0);
-                yield return new WaitForSeconds(General.Tiempos["parpadeo"]);
+                yield return new WaitForSeconds(Tiempo.PARPADEO);
                 sr.color = new Color(1, 1, 1, 1);
-                yield return new WaitForSeconds(General.Tiempos["parpadeo"]);
+                yield return new WaitForSeconds(Tiempo.PARPADEO);
             }
             else
             {
@@ -172,7 +172,7 @@ public class Player : MonoBehaviour
         animator.SetBool("lose", true);
         BallManager.bm.LoseGame();
 
-        yield return new WaitForSeconds(General.Tiempos["texto"]);
+        yield return new WaitForSeconds(Tiempo.TEXTO);
         rb.isKinematic = false;
 
         if (transform.position.x < 0)
@@ -189,9 +189,13 @@ public class Player : MonoBehaviour
     {
         if (lm.lifes <= 0)
         {
-            General.CargarEscena(0); ;// AJUSTAR PARA QUE EL DISEÑO DE LAS VIDAS QUEDE EN 0
+            General.g.CargarEscena(0); ;// AJUSTAR PARA QUE EL DISEÑO DE LAS VIDAS QUEDE EN 0
+            GameManager.gm.StartGameOver();
         }
-        Invoke("ReloadLevel", General.Tiempos["cuentaAtras"]);
+        else
+        {
+            Invoke("ReloadLevel", Tiempo.CUENTAATRAS);
+        }
     }
 
     /// <summary>
@@ -282,7 +286,7 @@ public class Player : MonoBehaviour
         {
             movement = Input.GetAxisRaw("Horizontal") * speed;
             animator.SetInteger("velX", Mathf.RoundToInt(movement));
-            if (movement < General.Velocidades["nulo"])
+            if (movement < Velocidad.NULO)
             {
                 sr.flipX = true;
             }

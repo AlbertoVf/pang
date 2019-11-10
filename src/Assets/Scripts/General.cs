@@ -1,12 +1,131 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// The escala gravedad. Escala de gravedad de los objetos. La gravedad por defecto es de (-9.81f)
+    /// </summary>
+    public class Gravedad
+    {
+        #region Public Fields
+
+        public const float ALTA = 2f;
+        public const float BAJA = 0.5f;
+        public const float NORMAL = 1F;
+
+        #endregion Public Fields
+    }
+
+    public class Limite
+    {
+        #region Public Fields
+
+        public const float DERECHA = 8.24f;
+        public const float INFERIOR = -2.57f;
+        public const float IZQUIERDA = -8.24f;
+        public const float SUPERIOR = 4.13f;
+
+        #endregion Public Fields
+    }
+
+    /// <summary>
+    /// Puntuacion durante las partidas.
+    /// </summary>
+    public class Puntuacion
+    {
+        #region Public Fields
+
+        public const int ACTUAL = 0;
+        public const int BOLA = 512;
+        public const int FRUIT = 1024;
+        public const int INICIAL = 0;
+        public const int ITEM = 128;
+        public const int RECORD = 0;
+        public const int VIDA = 3;
+
+        #endregion Public Fields
+    }
+
+    /// <summary>
+    /// Puntuacion durante el recuento de puntos. Son puntos extra
+    /// </summary>
+    public class PuntuacionRecuento
+    {
+        #region Public Fields
+
+        public const int BOLA = 32;
+        public const int FRUIT = 64;
+        public const int TIEMPO = 16;
+
+        #endregion Public Fields
+    }
+
+    /// <summary>
+    /// Gestiona las teclas que se utilizaran en el juego.
+    /// </summary>
+    public class Tecla
+    {
+        #region Public Fields
+
+        public const KeyCode DERECHA = KeyCode.RightArrow;
+        public const KeyCode DISPARAR = KeyCode.Space;
+        public const KeyCode IZQUIERDA = KeyCode.LeftArrow;
+        public const KeyCode PAUSA = KeyCode.Return;
+        public const KeyCode START = KeyCode.Return;
+
+        #endregion Public Fields
+    }
+
+    /// <summary>
+    /// Tiempos de duracion en segundos.
+    /// </summary>
+    public class Tiempo
+    {
+        #region Public Fields
+
+        public const float CONGELACION = 6f;
+        public const float CUENTAATRAS = 3f;
+        public const float ITEMSUELO = 3f;
+        public const float PARPADEO = 0.3f;
+        public const float PARTIDA = 100f;
+        public const float TEXTO = 1f;
+
+        #endregion Public Fields
+    }
+
+    /// <summary>
+    /// Tiempos de espera en segundos
+    /// </summary>
+    public class TiempoEspera
+    {
+        #region Public Fields
+
+        public const float ANCLA = 0.5f;
+        public const float LARGA = 1f;
+        public const float NORMAL = 0.5f;
+        public const float RAPIDA = 0.15f;
+
+        #endregion Public Fields
+    }
+
+    /// <summary>
+    /// Velocidades de los proyectiles y el jugador.
+    /// </summary>
+    public class Velocidad
+    {
+        #region Public Fields
+
+        public const float LENTO = 2.5f;
+        public const float MUYLENTO = 1.3f;
+        public const float MUYRAPIDO = 8f;
+        public const float NORMAL = 4f;
+        public const float NULO = 0f;
+        public const float RAPIDO = 6f;
+
+        #endregion Public Fields
+    }
+
     /// <summary>
     /// Gestiona todas las variables estaticas del juego. Cambio de escenas, teclas de juego, velocidades, tiempo, limites...
     /// </summary>
@@ -14,132 +133,19 @@ namespace Assets.Scripts
     {
         #region Public Fields
 
-        /// <summary>
-        /// The escala gravedad. Escala de gravedad de los objetos. La gravedad por defecto es de (-9.81f)
-        /// baja : la gravedad es la mitad
-        /// normal : no se modifica la gravedad
-        /// alta : la gravedad es el doble
-        /// </summary>
-        public static Dictionary<string, float> EscalasGravedad = new Dictionary<string, float>
-        {
-            ["baja"] = 0.5f,
-            ["normal"] = 1f,
-            ["alta"] = 2f
-        };
-
-        /// <summary>
-        /// Interfaz del juego. Las puntuaciones se general automaticamente y son diferentes en cada partida.
-        /// inicial : puntuacion al comenzar una nueva partida
-        /// actual : puntuacion durante la partida
-        /// record : puntuacion maxima alcanzada
-        /// bola : puntuacion al romper una bola
-        /// fruit : puntuacion al coger un item de fruta
-        /// item : puntuacion al coger un arma, oscudo u objeto
-        /// vida : numero de vidas
-        /// cuentaBola : puntos de cada bola al acabar el nivel
-        /// cuentaFruit : puntos de cada fruta al acabar el nivel
-        /// cuentaTiempo : puntos por cada segundo restante
-        /// </summary>
-        public static Dictionary<string, int> Interfaz = new Dictionary<string, int>
-        {
-            ["inicial"] = 0,
-            ["actual"] = 0,
-            ["record"] = 0,
-            ["bola"] = Aleatorio(200, 500),
-            ["fruit"] = Aleatorio(300, 1000),
-            ["item"] = Aleatorio(100, 300),
-            ["vida"] = 3,
-            ["cuentaBola"] = 75,
-            ["cuentaFruit"] = 150,
-            ["cuentaTiempo"] = 25
-        };
-
-        /// <summary>
-        /// Limites de la pantalla para el movimiento del jugador.
-        /// </summary>
-        public static Dictionary<string, float> Limites = new Dictionary<string, float>
-        {
-            ["izquierda"] = -8.24f,
-            ["derecha"] = 8.24f,
-            ["superior"] = 4.13f,
-            ["inferior"] = -2.57f
-        };
-
-        /// <summary>
-        /// Gestiona las teclas que se utilizaran en el juego.
-        /// </summary>
-        public static Dictionary<string, KeyCode> Teclas = new Dictionary<string, KeyCode>
-        {
-            ["start"] = KeyCode.Return,
-            ["derecha"] = KeyCode.RightArrow,
-            ["izquierda"] = KeyCode.LeftArrow,
-            ["disparar"] = KeyCode.Space
-        };
-
-        /// <summary>
-        /// Tiempos de duracion en segundos.
-        /// item : Duracion de los items en el suelo.
-        /// cuentaAtras : temporizador de inicio,duracion de perdida de escudo, ralentizacion de reloj
-        /// parpadeo : parpadeo de las animaciones.
-        /// texto : duracion del texto de puntuacion de frutas y bolas, espera al perder la partida
-        /// partida : duracion del nivel
-        /// </summary>
-        public static Dictionary<string, float> Tiempos = new Dictionary<string, float>
-        {
-            ["item"] = 3f,
-            ["cuentaAtras"] = 2f,
-            ["parpadeo"] = 0.2f,
-            ["texto"] = 1f,
-            ["partida"] = 100f
-        };
-
-        /// <summary>
-        /// Velocidades de los proyectiles y el jugador.
-        /// </summary>
-        public static Dictionary<string, float> Velocidades = new Dictionary<string, float>
-        {
-            ["nulo"] = 0f,
-            ["desaparicion"] = 0.4f,
-            ["muyLento"] = 1.3f,
-            ["lento"] = 2.5f,
-            ["normal"] = 4f,
-            ["rapido"] = 6f,
-            ["muyRapido"] = 8f
-        };
+        public static General g;
 
         #endregion Public Fields
 
         #region Public Methods
 
         /// <summary>
-        /// Genera un numero aleatorio entre dos valores, ambos incluidos
-        /// </summary>
-        /// <param name="min">Valor minimo</param>
-        /// <param name="max">Valor maximo</param>
-        /// <returns>Numero</returns>
-        public static int Aleatorio(int min, int max)
-        {
-            // System.Random r = new System.Random();
-            // int a = r.Next(min, max+1);
-            // return a;
-
-            var guid = Guid.NewGuid();
-            var justNumbers = new string(guid.ToString().Where(char.IsDigit).ToArray());
-            var seed = int.Parse(justNumbers.Substring(0, 4));
-
-            var random = new System.Random(seed);
-            var value = random.Next(min, max + 1);
-
-            return value;
-        }
-
-        /// <summary>
         /// Carga una escena al presionar la tecla enter.
         /// </summary>
         /// <param name="escena">Nombre de la escena</param>
-        public static void CargarEscena(string escena)
+        public void CargarEscena(string escena)
         {
-            if (Input.GetKeyDown(Teclas["start"]))
+            if (Input.GetKeyDown(Tecla.START))
             {
                 SceneManager.LoadScene(escena);
             }
@@ -149,9 +155,9 @@ namespace Assets.Scripts
         /// Carga una escena al presionar la tecla enter.
         /// </summary>
         /// <param name="escena">Numero de la escena</param>
-        public static void CargarEscena(int escena)
+        public void CargarEscena(int escena)
         {
-            if (Input.GetKeyDown(Teclas["start"]))
+            if (Input.GetKeyDown(Tecla.START))
             {
                 SceneManager.LoadScene(escena);
             }

@@ -60,7 +60,7 @@ public class PowerUps : MonoBehaviour
         {
             inGround = true;
 
-            Destroy(gameObject, General.Tiempos["item"]);//destruir objeto en X segundos
+            Destroy(gameObject, Tiempo.ITEMSUELO);//destruir objeto en X segundos
         }
         if (collision.gameObject.tag == "Player")
         {
@@ -115,7 +115,7 @@ public class PowerUps : MonoBehaviour
     {
         if (!inGround)
         {
-            transform.position += Vector3.down * Time.deltaTime * General.Velocidades["lento"];
+            transform.position += Vector3.down * Time.deltaTime * Velocidad.LENTO;
         }
     }
 
