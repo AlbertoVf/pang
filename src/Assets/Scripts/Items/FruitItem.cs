@@ -15,9 +15,13 @@ public class FruitItem : MonoBehaviour
     /// </summary>
     public Sprite[] fruitSprites;
 
+    public AudioClip itemSonido;
+
     #endregion Public Fields
 
     #region Private Fields
+
+    private AudioSource fuenteAudio;
 
     /// <summary>
     /// The in ground.
@@ -47,6 +51,7 @@ public class FruitItem : MonoBehaviour
     /// <param name="collision">The collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        General.Audio(fuenteAudio, itemSonido);
         if (collision.gameObject.tag == "Ground")
         {
             inGround = true;
@@ -56,6 +61,7 @@ public class FruitItem : MonoBehaviour
         {
             int score = Puntuacion.FRUIT;
             ScoreManager.sm.UpdateScore(score);
+
             PopUpManager.pm.InstanciatePopUpText(transform.position, score);
             GameManager.gm.fruitsCatched++;
             Destroy(gameObject);
@@ -68,6 +74,7 @@ public class FruitItem : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        fuenteAudio = GetComponent<AudioSource>();
         sr.sprite = fruitSprites[Random.Range(0, fruitSprites.Length)];
         gameObject.name = sr.sprite.name;
     }

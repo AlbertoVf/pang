@@ -9,6 +9,8 @@ public class Ball : MonoBehaviour
 {
     #region Public Fields
 
+    public AudioClip itemSonido;
+
     /// <summary>
     /// The next ball.
     /// Proxima bola que se generara al explotar
@@ -36,6 +38,8 @@ public class Ball : MonoBehaviour
     /// Velocidad actual de la bola
     /// </summary>
     private Vector2 currentVelocity;
+
+    private AudioSource fuenteAudio;
 
     /// <summary>
     /// The rb.
@@ -97,6 +101,8 @@ public class Ball : MonoBehaviour
     /// </summary>
     public void Split()
     {
+        BallManager.bm.SonidoExplosion();
+
         if (nextBall != null)
         {
             InstantiantePrice();
@@ -188,7 +194,13 @@ public class Ball : MonoBehaviour
         if (aleatory == 1)
         {
             Instantiate(powerUp, transform.position, Quaternion.identity);
+            General.Audio(fuenteAudio, itemSonido);
         }
+    }
+
+    private void Start()
+    {
+        fuenteAudio = GetComponent<AudioSource>();
     }
 
     #endregion Private Methods

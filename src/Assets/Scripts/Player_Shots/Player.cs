@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     /// </summary>
     public bool blink;
 
+    public AudioClip escudoSonido;
+
     /// <summary>
     /// The shield
     /// Comprueba si esta activado el escudo
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour
     /// The animator
     /// </summary>
     private Animator animator;
+
+    private AudioSource fuenteAudio;
 
     /// <summary>
     /// The left wall
@@ -189,7 +193,7 @@ public class Player : MonoBehaviour
     {
         if (lm.lifes <= 0)
         {
-            General.g.CargarEscena(0); ;// AJUSTAR PARA QUE EL DISEÑO DE LAS VIDAS QUEDE EN 0
+            General.CargarEscena(0); ;// AJUSTAR PARA QUE EL DISEÑO DE LAS VIDAS QUEDE EN 0
             GameManager.gm.StartGameOver();
         }
         else
@@ -212,12 +216,15 @@ public class Player : MonoBehaviour
                 if (shield.activeInHierarchy)
                 {
                     shield.SetActive(false);
+                    //sonido
+                    General.Audio(fuenteAudio, escudoSonido);
                     StartCoroutine(IEBlinking());
                 }
                 else
                 {
                     if (!blink)
                     {
+                        General.Audio(fuenteAudio, escudoSonido);
                         StartCoroutine(IELose());
                     }
                 }
@@ -274,6 +281,11 @@ public class Player : MonoBehaviour
         lm.SubstractLifes();
         lm.RestartLifesDoll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void Start()
+    {
+        fuenteAudio = GetComponent<AudioSource>();
     }
 
     /// <summary>

@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         gameOver.SetActive(true);
         yield return new WaitForSeconds(Tiempo.CUENTAATRAS);
-        General.g.CargarEscena(0);
+        General.CargarEscena(0);
     }
 
     /// <summary>

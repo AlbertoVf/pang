@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 20308e0ac6cc9734a94e31ed9d107a65
   - enabled: 1
-    path: Assets/Scenes/Test/Tour.unity
-    guid: 3add89097f4b6ad4eb57e5f87e1a9801
+    path: Assets/Scenes/TourMode/TourMode_01.unity
+    guid: 46b8236027f05104d9d4c5a7f2769a9e
+  - enabled: 1
+    path: Assets/Scenes/PanicMode/PanicMode.unity
+    guid: af8a8470f8a0a8f40b80e1d29a892dac
   m_configObjects: {}

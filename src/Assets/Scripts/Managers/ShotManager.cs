@@ -15,6 +15,8 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     public static ShotManager shm;
 
+    public AudioClip disparo;
+
     /// <summary>
     /// The shots
     /// Array con los tipos de disparos
@@ -34,6 +36,8 @@ public class ShotManager : MonoBehaviour
     /// The animator
     /// </summary>
     private Animator animator;
+
+    private AudioSource fuenteAudio;
 
     /// <summary>
     /// The maximum shots
@@ -147,6 +151,7 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     private void Shot()
     {
+        General.AudioClick(fuenteAudio, disparo, Tecla.DISPARAR);
         if (typeOfShot != 3)
         {
             Instantiate(Shots[typeOfShot], player.position - new Vector3(0, 0.15f, 0), Quaternion.identity);
@@ -166,6 +171,7 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        fuenteAudio = GetComponent<AudioSource>();
         typeOfShot = 0;
         maxShots = 1;
     }

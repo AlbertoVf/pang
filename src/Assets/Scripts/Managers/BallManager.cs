@@ -24,6 +24,7 @@ public class BallManager : MonoBehaviour
     /// </summary>
     public List<GameObject> balls = new List<GameObject>();
 
+    public AudioClip explosion;
     public GameObject panel;
 
     /// <summary>
@@ -35,6 +36,8 @@ public class BallManager : MonoBehaviour
     #endregion Public Fields
 
     #region Private Fields
+
+    private AudioSource fuenteAudio;
 
     /// <summary>
     /// Controla el numero de vidas
@@ -65,6 +68,7 @@ public class BallManager : MonoBehaviour
     /// <param name="ball">The ball.</param>
     /// <param name="ball1">The ball1.</param>
     /// <param name="ball2">The ball2.</param>
+    //sonido 11 al explotar bola
     public void DestroyBall(GameObject ball, GameObject ball1, GameObject ball2)
     {
         balls.Remove(ball);
@@ -166,6 +170,11 @@ public class BallManager : MonoBehaviour
         StartCoroutine(IETimeSlow());
     }
 
+    public void SonidoExplosion()
+    {
+        General.Audio(fuenteAudio, explosion);
+    }
+
     /// <summary>
     /// Starts the game.
     /// Inicia el juego impulsando las bolas a derecha o izquierda de manera aleatoria
@@ -234,6 +243,7 @@ public class BallManager : MonoBehaviour
     private void Start()
     {
         balls.AddRange(GameObject.FindGameObjectsWithTag("Ball"));
+        fuenteAudio = GetComponent<AudioSource>();
     }
 
     private void Update()

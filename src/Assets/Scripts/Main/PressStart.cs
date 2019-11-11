@@ -9,11 +9,14 @@ public class PressStart : MonoBehaviour
 {
     #region Public Fields
 
+    public AudioClip click;
     public GameObject pressStart;
 
     #endregion Public Fields
 
     #region Private Fields
+
+    private AudioSource fuenteAudio;
 
     /// <summary>
     /// The time
@@ -44,6 +47,7 @@ public class PressStart : MonoBehaviour
 
     private void Start()
     {
+        fuenteAudio = GetComponent<AudioSource>();
         GameObject destroyOnLoad = FindObjectOfType<Estatico>().gameObject;
         if (destroyOnLoad != null)
         {
@@ -58,7 +62,8 @@ public class PressStart : MonoBehaviour
     private void Update()
     {
         ParpadeoTexto(pressStart);
-        General.g.CargarEscena(1);
+        General.CargarEscena(1);
+        General.AudioClick(fuenteAudio, click);
     }
 
     #endregion Private Methods

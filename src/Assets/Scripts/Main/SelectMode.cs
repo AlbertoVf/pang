@@ -10,6 +10,8 @@ public class SelectMode : MonoBehaviour
 {
     #region Public Fields
 
+    public AudioClip click;
+
     /// <summary>
     /// The panic mode image.
     /// </summary>
@@ -34,6 +36,8 @@ public class SelectMode : MonoBehaviour
 
     #region Private Fields
 
+    private AudioSource fuenteAudio;
+
     /// <summary>
     /// The tour.
     /// Indica si esta seleccionado el modo Tour
@@ -47,6 +51,7 @@ public class SelectMode : MonoBehaviour
     private void Start()
     {
         tour = true;
+        fuenteAudio = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -67,7 +72,7 @@ public class SelectMode : MonoBehaviour
             {
                 tour = false;
             }
-            General.g.CargarEscena("TourMode_01");
+            General.CargarEscena("TourMode_01");
         }
         else
         {
@@ -81,8 +86,9 @@ public class SelectMode : MonoBehaviour
             {
                 tour = true;
             }
-            General.g.CargarEscena("PanicMode");
+            // General.CargarEscena("PanicMode");
         }
+        General.AudioClick(fuenteAudio, click);
     }
 
     #endregion Private Methods

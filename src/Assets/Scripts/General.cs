@@ -131,19 +131,28 @@ namespace Assets.Scripts
     /// </summary>
     internal class General
     {
-        #region Public Fields
-
-        public static General g;
-
-        #endregion Public Fields
-
         #region Public Methods
+
+        public static void Audio(AudioSource fuenteAudio, AudioClip sonido)
+        {
+            fuenteAudio.clip = sonido;
+            fuenteAudio.Play();
+        }
+
+        public static void AudioClick(AudioSource fuente, AudioClip sonido, KeyCode k = Tecla.START)
+        {
+            if (Input.GetKeyDown(k))
+            {
+                fuente.clip = sonido;
+                fuente.Play();
+            }
+        }
 
         /// <summary>
         /// Carga una escena al presionar la tecla enter.
         /// </summary>
         /// <param name="escena">Nombre de la escena</param>
-        public void CargarEscena(string escena)
+        public static void CargarEscena(string escena)
         {
             if (Input.GetKeyDown(Tecla.START))
             {
@@ -155,7 +164,7 @@ namespace Assets.Scripts
         /// Carga una escena al presionar la tecla enter.
         /// </summary>
         /// <param name="escena">Numero de la escena</param>
-        public void CargarEscena(int escena)
+        public static void CargarEscena(int escena)
         {
             if (Input.GetKeyDown(Tecla.START))
             {
