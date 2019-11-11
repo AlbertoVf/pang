@@ -24,7 +24,11 @@ public class BallManager : MonoBehaviour
     /// </summary>
     public List<GameObject> balls = new List<GameObject>();
 
+    /// <summary>
+    /// The explosion
+    /// </summary>
     public AudioClip explosion;
+
     public GameObject panel;
 
     /// <summary>
@@ -37,6 +41,9 @@ public class BallManager : MonoBehaviour
 
     #region Private Fields
 
+    /// <summary>
+    /// The fuente audio
+    /// </summary>
     private AudioSource fuenteAudio;
 
     /// <summary>

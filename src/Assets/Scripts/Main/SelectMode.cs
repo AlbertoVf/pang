@@ -10,6 +10,9 @@ public class SelectMode : MonoBehaviour
 {
     #region Public Fields
 
+    /// <summary>
+    /// The click
+    /// </summary>
     public AudioClip click;
 
     /// <summary>
@@ -48,6 +51,9 @@ public class SelectMode : MonoBehaviour
 
     #region Private Methods
 
+    /// <summary>
+    /// Starts this instance.
+    /// </summary>
     private void Start()
     {
         tour = true;

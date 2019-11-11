@@ -38,6 +38,10 @@ public class Shield : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates this instance.
+    /// Realiza la caida del objeto hasta el suelo
+    /// </summary>
     private void Update()
     {
         if (!inGround)

@@ -15,12 +15,19 @@ public class FruitItem : MonoBehaviour
     /// </summary>
     public Sprite[] fruitSprites;
 
+    /// <summary>
+    /// The item sonido
+    /// Audio que se reproducira al coger el objeto
+    /// </summary>
     public AudioClip itemSonido;
 
     #endregion Public Fields
 
     #region Private Fields
 
+    /// <summary>
+    /// The fuente audio
+    /// </summary>
     private AudioSource fuenteAudio;
 
     /// <summary>
@@ -39,9 +46,13 @@ public class FruitItem : MonoBehaviour
 
     #region Private Methods
 
+    /// <summary>
+    /// Awakes this instance.
+    /// </summary>
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        fuenteAudio = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -74,11 +85,14 @@ public class FruitItem : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        fuenteAudio = GetComponent<AudioSource>();
         sr.sprite = fruitSprites[Random.Range(0, fruitSprites.Length)];
         gameObject.name = sr.sprite.name;
     }
 
+    /// <summary>
+    /// Updates this instance.
+    /// Realiza la caida del objeto hasta el suelo
+    /// </summary>
     private void Update()
     {
         if (!inGround)

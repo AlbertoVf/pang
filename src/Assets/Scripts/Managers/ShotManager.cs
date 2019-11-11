@@ -15,6 +15,9 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     public static ShotManager shm;
 
+    /// <summary>
+    /// The disparo
+    /// </summary>
     public AudioClip disparo;
 
     /// <summary>
@@ -37,6 +40,9 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     private Animator animator;
 
+    /// <summary>
+    /// The fuente audio
+    /// </summary>
     private AudioSource fuenteAudio;
 
     /// <summary>
@@ -54,6 +60,9 @@ public class ShotManager : MonoBehaviour
     /// </summary>
     private Transform player;
 
+    /// <summary>
+    /// The shot image
+    /// </summary>
     private CurrentShotImage shotImage;
 
     #endregion Private Fields

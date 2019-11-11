@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Gestiona los objetos de las escenas que se conservaran para la siguiente
+/// </summary>
 public class Estatico : MonoBehaviour
 {
     #region Public Fields
@@ -10,6 +13,9 @@ public class Estatico : MonoBehaviour
 
     #region Private Methods
 
+    /// <summary>
+    /// Awakes this instance.
+    /// </summary>
     private void Awake()
     {
         if (e == null)

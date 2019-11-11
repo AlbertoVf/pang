@@ -193,8 +193,8 @@ public class Player : MonoBehaviour
     {
         if (lm.lifes <= 0)
         {
-            General.CargarEscena(0); ;// AJUSTAR PARA QUE EL DISEÑO DE LAS VIDAS QUEDE EN 0
             GameManager.gm.StartGameOver();
+            General.CargarEscena(0);
         }
         else
         {

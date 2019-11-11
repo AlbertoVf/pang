@@ -24,7 +24,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static bool inGame;
 
+    /// <summary>
+    /// The balls destroyed
+    /// </summary>
     public int ballsDestroyed = 0;
+
+    /// <summary>
+    /// The fruits catched
+    /// </summary>
     public int fruitsCatched = 0;
 
     public GameObject gameOver;
@@ -35,23 +42,39 @@ public class GameManager : MonoBehaviour
     public GameObject ready;
 
     public float time = Tiempo.PARTIDA;
+
+    /// <summary>
+    /// The time text
+    /// </summary>
     public Text timeText;
 
     #endregion Public Fields
 
     #region Private Fields
 
+    /// <summary>
+    /// The fruits
+    /// </summary>
     private Fruits fruits;
+
+    /// <summary>
+    /// The lm
+    /// </summary>
     private LifeManager lm;
 
     #endregion Private Fields
 
     #region Public Methods
 
+    /// <summary>
+    /// Ies the game over.
+    /// Ejecuta un Game Over y vuelve a la escena de titulo
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator IEGameOver()
     {
         gameOver.SetActive(true);
-        yield return new WaitForSeconds(Tiempo.CUENTAATRAS);
+        yield return new WaitForSeconds(TiempoEspera.GAMEOVER);
         General.CargarEscena(0);
     }
 
@@ -68,17 +91,26 @@ public class GameManager : MonoBehaviour
         inGame = true;
     }
 
+    /// <summary>
+    /// Nexts the level.
+    /// </summary>
     public void NextLevel()
     {
         lm.RestartLifesDoll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    /// <summary>
+    /// Starts the game over.
+    /// </summary>
     public void StartGameOver()
     {
         StartCoroutine(IEGameOver());
     }
 
+    /// <summary>
+    /// Updates the ball destroyed.
+    /// </summary>
     public void UpdateBallDestroyed()
     {
         ballsDestroyed++;
@@ -110,6 +142,9 @@ public class GameManager : MonoBehaviour
         lm = FindObjectOfType<LifeManager>();
     }
 
+    /// <summary>
+    /// Starts this instance.
+    /// </summary>
     private void Start()
     {
         timeText.text = " TIME " + time.ToString("f0");
@@ -118,6 +153,9 @@ public class GameManager : MonoBehaviour
         ScoreManager.sm.UpdateHightScore();
     }
 
+    /// <summary>
+    /// Updates this instance.
+    /// </summary>
     private void Update()
     {
         if (inGame)

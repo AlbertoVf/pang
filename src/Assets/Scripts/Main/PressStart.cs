@@ -9,13 +9,24 @@ public class PressStart : MonoBehaviour
 {
     #region Public Fields
 
+    /// <summary>
+    /// The click.
+    /// Sonido al pulsar el click
+    /// </summary>
     public AudioClip click;
+
+    /// <summary>
+    /// The press start
+    /// </summary>
     public GameObject pressStart;
 
     #endregion Public Fields
 
     #region Private Fields
 
+    /// <summary>
+    /// The fuente audio
+    /// </summary>
     private AudioSource fuenteAudio;
 
     /// <summary>
@@ -45,6 +56,9 @@ public class PressStart : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts this instance.
+    /// </summary>
     private void Start()
     {
         fuenteAudio = GetComponent<AudioSource>();

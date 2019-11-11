@@ -9,6 +9,10 @@ public class Ball : MonoBehaviour
 {
     #region Public Fields
 
+    /// <summary>
+    /// The item sonido
+    /// Sonido que se reproduce al explotar las bolas
+    /// </summary>
     public AudioClip itemSonido;
 
     /// <summary>
@@ -39,6 +43,9 @@ public class Ball : MonoBehaviour
     /// </summary>
     private Vector2 currentVelocity;
 
+    /// <summary>
+    /// The fuente audio
+    /// </summary>
     private AudioSource fuenteAudio;
 
     /// <summary>
@@ -97,7 +104,8 @@ public class Ball : MonoBehaviour
     }
 
     /// <summary>
-    /// Explotan las bolas y se dividen
+    /// Explotan las bolas y se dividen.
+    /// Genera un item de premios y puntuacion
     /// </summary>
     public void Split()
     {
@@ -179,9 +187,13 @@ public class Ball : MonoBehaviour
 
     #region Private Methods
 
+    /// <summary>
+    /// Awakes this instance.
+    /// </summary>
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        fuenteAudio = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -196,11 +208,6 @@ public class Ball : MonoBehaviour
             Instantiate(powerUp, transform.position, Quaternion.identity);
             General.Audio(fuenteAudio, itemSonido);
         }
-    }
-
-    private void Start()
-    {
-        fuenteAudio = GetComponent<AudioSource>();
     }
 
     #endregion Private Methods

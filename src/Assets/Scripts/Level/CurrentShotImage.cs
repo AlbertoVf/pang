@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Gestiona la imagen del disparo actual
+/// </summary>
 public class CurrentShotImage : MonoBehaviour
 {
     #region Public Fields

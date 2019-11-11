@@ -31,6 +31,10 @@ public class PowerUps : MonoBehaviour
     /// </summary>
     private bool inGround;
 
+    /// <summary>
+    /// The lm.
+    /// Acede a la clase LifeManager
+    /// </summary>
     private LifeManager lm;
 
     /// <summary>
@@ -43,6 +47,9 @@ public class PowerUps : MonoBehaviour
 
     #region Private Methods
 
+    /// <summary>
+    /// Awakes this instance.
+    /// </summary>
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -111,6 +118,10 @@ public class PowerUps : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates this instance.
+    /// Realiza la caida del objeto hasta el suelo
+    /// </summary>
     private void Update()
     {
         if (!inGround)

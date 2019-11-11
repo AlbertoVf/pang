@@ -24,6 +24,10 @@ public class PopUpText : MonoBehaviour
         starPos = transform.position;
     }
 
+    /// <summary>
+    /// Updates this instance.
+    /// Crea un texto con el valor de la puntuacion obtenida
+    /// </summary>
     private void Update()
     {
         transform.Translate(Vector3.up * Time.deltaTime * Tiempo.TEXTO);
