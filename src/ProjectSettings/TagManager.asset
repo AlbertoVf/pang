@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Roof
+  - Ground
+  - Left
+  - Right
+  - Ball
+  - Arrow
+  - Ancle
   layers:
   - Default
   - TransparentFX
@@ -13,12 +20,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Shot
+  - 'Ball '
+  - Ground
+  - Wall
+  - Item
   - 
   - 
   - 
