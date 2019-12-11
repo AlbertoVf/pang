@@ -12,9 +12,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 20308e0ac6cc9734a94e31ed9d107a65
   - enabled: 1
-    path: Assets/Scenes/TourMode/TourMode_01.unity
-    guid: 46b8236027f05104d9d4c5a7f2769a9e
+    path: Assets/Scenes/TourMode_01.unity
+    guid: 3add89097f4b6ad4eb57e5f87e1a9801
   - enabled: 1
-    path: Assets/Scenes/PanicMode/PanicMode.unity
-    guid: af8a8470f8a0a8f40b80e1d29a892dac
+    path: Assets/Scenes/TourMode_02.unity
+    guid: ff44f33400e82da4fa06b7ab4ea288ba
+  - enabled: 1
+    path: Assets/Scenes/TourMode_03.unity
+    guid: 2a990cc7e74fe914b97b796f50887a2d
+  - enabled: 1
+    path: Assets/Scenes/TourMode_04.unity
+    guid: d72b0f47a9d1c3441ac0762331ddea9c
+  - enabled: 1
+    path: Assets/Scenes/TourMode_05.unity
+    guid: 21950cbe58352f64697690e95d045040
+  - enabled: 1
+    path: Assets/Scenes/TourMode_06.unity
+    guid: e8a9f36febc943848929617986092c4c
+  - enabled: 1
+    path: Assets/Scenes/TourMode_07.unity
+    guid: 5239644e247d1194bae4307267bec24f
   m_configObjects: {}

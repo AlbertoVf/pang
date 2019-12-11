@@ -70,8 +70,8 @@ public class LifeManager : MonoBehaviour
     /// </summary>
     public void RestartLifesDoll()
     {
-        animator.SetBool("win", false);
         animator.SetBool("lose", false);
+        animator.SetBool("win", false);
     }
 
     /// <summary>

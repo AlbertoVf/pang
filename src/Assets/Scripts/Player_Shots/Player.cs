@@ -102,6 +102,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         lm = FindObjectOfType<LifeManager>();
+        fuenteAudio = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -170,10 +171,9 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     private IEnumerator IELose()
     {
-        GameManager.inGame = false;
         lm.LifeLose();
-
-        animator.SetBool("lose", true);
+        GameManager.inGame = false;
+        // animator.SetBool("lose", true);
         BallManager.bm.LoseGame();
 
         yield return new WaitForSeconds(Tiempo.TEXTO);
@@ -216,7 +216,6 @@ public class Player : MonoBehaviour
                 if (shield.activeInHierarchy)
                 {
                     shield.SetActive(false);
-                    //sonido
                     General.Audio(fuenteAudio, escudoSonido);
                     StartCoroutine(IEBlinking());
                 }
@@ -281,11 +280,6 @@ public class Player : MonoBehaviour
         lm.SubstractLifes();
         lm.RestartLifesDoll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    private void Start()
-    {
-        fuenteAudio = GetComponent<AudioSource>();
     }
 
     /// <summary>
