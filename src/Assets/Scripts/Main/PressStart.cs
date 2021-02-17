@@ -62,11 +62,11 @@ public class PressStart : MonoBehaviour
     private void Start()
     {
         fuenteAudio = GetComponent<AudioSource>();
-        GameObject destroyOnLoad = FindObjectOfType<Estatico>().gameObject;
-        if (destroyOnLoad != null)
-        {
-            Destroy(destroyOnLoad);
-        }
+    //    GameObject destroyOnLoad = FindObjectOfType<Estatico>().gameObject;
+    //    if (destroyOnLoad != null)
+    //    {
+    //        Destroy(destroyOnLoad);
+    //    }
     }
 
     /// <summary>

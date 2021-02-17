@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     private IEnumerator IELose()
     {
-        lm.LifeLose();
+        //lm.LifeLose();
         GameManager.inGame = false;
         // animator.SetBool("lose", true);
         BallManager.bm.LoseGame();
